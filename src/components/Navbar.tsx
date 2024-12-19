@@ -12,11 +12,13 @@ export default function Navbar() {
     }
 
     return (
-        <header className="flex py-2 justify-between">
+        <header className="flex my-2 justify-between">
             <button onClick={toggleDarkMode}>{darkMode ? "Light" : "Dark"} Mode</button>
-            <ul className="flex w-1/2 justify-between">
+            <ul className="flex justify-between group w-1/2">
                 {navItems.map((item, index) => (
-                    <li key={index}>{item}</li>
+                    <li className="transform hover:!opacity-100 group-has-[:hover]:opacity-50 hover:scale-110 duration-200" key={index}>
+                        {item}
+                    </li>
                 ))}
             </ul>
         </header>
