@@ -12,7 +12,7 @@ export default function Navbar() {
     }
 
     return (
-        <header className="flex my-2 justify-between">
+        <header className="fixed w-3/4 flex my-2 justify-between">
             <button onClick={toggleDarkMode}>{darkMode ? "Light" : "Dark"} Mode</button>
             <ul className="flex justify-between group w-1/2">
                 {navItems.map((item, index) => (
