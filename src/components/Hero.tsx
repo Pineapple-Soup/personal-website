@@ -4,7 +4,7 @@ export default function Hero() {
    return (
     <section className="w-full place-items-center h-screen grid grid-cols-2">
         <div className="text-left">
-            <h1 className="">
+            <h1>
                 Hello,
                 <span className="text-8xl inline-block hover:animate-wave hover:rotate-3 cursor-pointer ml-12">👋</span>
                 I&apos;m Adithya
