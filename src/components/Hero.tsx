@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Hero() {
    return (
-    <section className="border w-full place-items-center h-screen grid grid-cols-2">
+    <section className="w-full place-items-center h-screen grid grid-cols-2">
         <div className="text-left">
             <h1 className="">
                 Hello,
