@@ -14,7 +14,7 @@ export default function Hero() {
             <sub className="leading-normal">
                 I love building things, solving puzzles, and learning new skills
             </sub>
-            <div className="flex mx-auto my-12 rounded-full" style={{ boxShadow: "-10px 10px 4px 0 rgba(0, 0, 0, 0.25)" }}>
+            <div className="flex mx-auto my-12 rounded-full drop-shadow-xl">
                 <MdEmail className="homeButton rounded-l-full"/>
                 <MdDocumentScanner className="homeButton -mx-0.5"/>
                 <FaLinkedin className="homeButton -mx-0.5"/>
