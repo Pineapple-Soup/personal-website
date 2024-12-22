@@ -15,10 +15,18 @@ export default function Hero() {
                 I love building things, solving puzzles, and learning new skills
             </sub>
             <div className="flex mx-auto my-12 rounded-full drop-shadow-xl">
-                <MdEmail className="homeButton rounded-l-full"/>
-                <MdDocumentScanner className="homeButton -mx-0.5"/>
-                <FaLinkedin className="homeButton -mx-0.5"/>
-                <FaGithub className="homeButton rounded-r-full"/>
+                <a href="mailto:adithya.iyer@email.ucr.edu" target="_blank" rel="noreferrer noopener">
+                    <MdEmail className="homeButton rounded-l-full"/>
+                </a>
+                <a href="https://drive.google.com/file/d/1cpX2s8RyJJZQsQ9Vy0ExwVyMRROp7L15/view?usp=sharing" target="_blank" rel="noreferrer noopener">
+                    <MdDocumentScanner className="homeButton -mx-0.5"/>
+                </a>
+                <a href="https://www.linkedin.com/in/adithya-b-iyer" target="_blank" rel="noreferrer noopener">
+                    <FaLinkedin className="homeButton -mx-0.5"/>
+                </a>
+                <a href="https://www.github.com/Pineapple-Soup" target="_blank" rel="noreferrer noopener">
+                    <FaGithub className="homeButton rounded-r-full"/>
+                </a>
             </div>
         </div>
         <div className="">
