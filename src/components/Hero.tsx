@@ -4,7 +4,7 @@ import { MdDocumentScanner, MdEmail } from "react-icons/md";
 
 export default function Hero() {
    return (
-    <section className="w-full h-screen place-items-center grid grid-cols-2">
+    <section className="w-full h-screen grid grid-cols-2">
         <div className="flex flex-col grow justify-center">
             <h1>
                 Hello!
