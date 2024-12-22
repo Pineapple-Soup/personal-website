@@ -8,7 +8,7 @@ export default function Navbar() {
             <ThemeToggle />
             <ul className="flex justify-between align-center group w-1/2">
                 {navItems.map((item, index) => (
-                    <li className="transform hover:!opacity-100 group-has-[:hover]:opacity-50 hover:scale-110 duration-200" key={index}>
+                    <li className="cursor-pointer transform hover:!opacity-100 group-has-[:hover]:opacity-50 hover:scale-110 duration-200" key={index}>
                         {item}
                     </li>
                 ))}
