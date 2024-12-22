@@ -2,7 +2,7 @@ import React from "react";
 
 export default function About() {
     return (
-        <section className="w-full h-screen grid grid-cols-2">
+        <section id="about" className="w-full h-screen grid grid-cols-2">
             <div>
                 {/* Placeholder for Images */}
             </div>
