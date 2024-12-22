@@ -10,14 +10,12 @@
   --accent: #69CC74;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #18140c;
-    --foreground: #eae8e4;
-    --primary: #ddc390;
-    --secondary: #E09D29;
-    --accent: #ffc96b;
-  }
+.dark {
+  --background: #18140c;
+  --foreground: #eae8e4;
+  --primary: #ddc390;
+  --secondary: #E09D29;
+  --accent: #ffc96b;
 }
 
 @layer base {
@@ -32,6 +30,7 @@
     color: var(--foreground);
     background: var(--background);
     font-family: 'IBM Plex Mono', monospace;
+    transition: background-color 0.3s, color 0.3s;
   }
 
   h1 {
@@ -72,5 +71,8 @@
 @layer utilities {
   .animate-wave {
     animation: wave 2s ease-in-out infinite;
+  }
+  .icon-transition {
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   }
 }
