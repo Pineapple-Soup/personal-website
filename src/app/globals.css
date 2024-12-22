@@ -51,6 +51,10 @@
   p {
     font-size: 20px;
   }
+
+  .homeButton {
+    @apply size-20 p-4 cursor-pointer bg-secondary ease-in-out duration-100 hover:bg-accent hover:-translate-y-1/4;  
+  }
 }
 
 @keyframes wave {
