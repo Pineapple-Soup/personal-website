@@ -15,7 +15,7 @@ export default function About() {
                     I enjoy using technology to solve real-world problems. My passions include cybersecurity, machine learning, and connectomics. 
                     When I&apos;m not coding or reading papers, you can find me practicing piano or guitar.
                 </p>
-                <button className="ml-auto text-lg bg-secondary rounded-md px-4 py-2 hover:bg-accent hover:scale-110" style={{ boxShadow: "5px 5px 4px 0 rgba(0, 0, 0, 0.25)" }}>
+                <button className="ml-auto text-lg bg-secondary rounded-md px-4 py-2 drop-shadow-xl hover:bg-accent hover:scale-110">
                     Read More
                 </button>
             </div>
