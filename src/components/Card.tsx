@@ -15,7 +15,7 @@ export default function Card({ title, description, status, image, stack }: CardP
     return (
         <div className="card">
             <div className="relative h-1/2 m-4">
-                <Image src={image} alt={title} fill={true} objectFit="cover" className="rounded-3xl"/>
+                <Image src={image} alt={title} fill={true} className="object-cover rounded-3xl"/>
             </div>
             <div className="flex justify-between items-center mx-6">
                 <h3 className='text-lg'>{title}</h3>
