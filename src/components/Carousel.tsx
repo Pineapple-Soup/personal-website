@@ -21,13 +21,13 @@ const Carousel = ({ cards }: CarouselProps) => {
 
     return (
         <div className="carousel">
-            <div onClick={handlePrevClick} className="opacity-50 rounded-3xl translate-x-1/4 translate-y-8">
+            <div onClick={handlePrevClick} className="flex-1 opacity-50 rounded-3xl translate-x-1/4 translate-y-8">
                 <Card {...cards[currentIndex === 0 ? cards.length - 1 : currentIndex - 1]} />
             </div>
-            <div className="z-10 rounded-3xl">
+            <div className="flex-1 z-10 rounded-3xl">
                 <Card {...cards[currentIndex]} />
             </div>
-            <div onClick={handleNextClick} className="opacity-50 rounded-3xl -translate-x-1/4 translate-y-8">
+            <div onClick={handleNextClick} className="flex-1 opacity-50 rounded-3xl -translate-x-1/4 translate-y-8">
                 <Card {...cards[currentIndex === cards.length - 1 ? 0 : currentIndex + 1]} />
             </div>
         </div>

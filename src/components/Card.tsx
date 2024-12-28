@@ -14,8 +14,8 @@ export interface CardProps {
 export default function Card({ title, description, status, image, stack }: CardProps) {
     return (
         <div className="card">
-            <div className="m-4">
-                <Image src={image} alt={title} className="rounded-3xl"/>
+            <div className="relative h-1/2 m-4">
+                <Image src={image} alt={title} fill={true} objectFit="cover" className="rounded-3xl"/>
             </div>
             <div className="flex justify-between items-center mx-6">
                 <h3 className='text-lg'>{title}</h3>
@@ -25,7 +25,7 @@ export default function Card({ title, description, status, image, stack }: CardP
             <ul className="flex flex-wrap m-4">
                 {stack.map((tech, index) => (
                     <li key={index}>
-                        <small className="bg-secondary rounded-3xl p-2 mx-2 hover:ring-accent hover:ring-2">{tech}</small>
+                        <small className="bg-secondary rounded-3xl p-2 m-2 hover:ring-accent hover:ring-2">{tech}</small>
                     </li>
                 ))}
             </ul>
