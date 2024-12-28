@@ -1,4 +1,3 @@
-
 import Image, { StaticImageData } from 'next/image';
 
 export type ProjectStatus = 'Planned' | 'In Progress' | 'Completed';
