@@ -33,9 +33,6 @@ const Carousel = ({ cards }: CarouselProps) => {
 
     return (
         <div className="carousel">
-            {/* <div className={'hidden ${isAnimating === -1 ? "transition-all duration-0 inline" : ""}'}>
-                <Card {...cards[currentIndex === 0 ? cards.length - 2 : currentIndex === 1 ? cards.length - 1 : currentIndex - 2]} />
-            </div> */}
             <div onClick={handlePrevClick} className={`flex-1 opacity-50 rounded-3xl translate-x-1/4 translate-y-8 ${isAnimating === -1 ? "transition-all ease-out duration-300 translate-x-full -translate-y-2 !opacity-100 z-20" : isAnimating === 1 ? "transition-all ease-out duration-300 !opacity-0" : ""}`}>
                 <Card {...cards[currentIndex === 0 ? cards.length - 1 : currentIndex - 1]} />
             </div>
