@@ -43,6 +43,11 @@
     font-weight: bold;
   }
 
+  h3 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
   sub {
     font-size: 32px;
   }
@@ -53,6 +58,14 @@
 
   .homeButton {
     @apply size-20 p-4 cursor-pointer bg-secondary ease-in-out duration-100 hover:bg-accent hover:-translate-y-1/4;  
+  }
+
+  .card {
+    @apply hover:cursor-pointer hover:-translate-y-10 h-full w-full flex flex-col overflow-hidden rounded-3xl bg-primary shadow-lg;
+  }
+
+  .badge {
+    @apply rounded-3xl p-2 font-extrabold;
   }
 }
 
