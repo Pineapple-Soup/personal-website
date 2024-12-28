@@ -64,6 +64,10 @@
     @apply hover:cursor-pointer hover:-translate-y-10 h-full w-full flex flex-col overflow-hidden rounded-3xl bg-primary shadow-lg;
   }
 
+  .carousel {
+    @apply h-1/2 flex justify-center;
+  }
+
   .badge {
     @apply rounded-3xl p-2 font-extrabold;
   }
