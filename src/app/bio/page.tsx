@@ -4,7 +4,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 export default function BioPage() {
     return (
         <main>
-            <header className="fixed w-3/4 my-2 flex justify-between items-center">
+            <header className="navbar">
                 <ThemeToggle />
                 <button className="mx-4"> 
                     <Link href="/"> Back </Link>
