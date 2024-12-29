@@ -56,6 +56,10 @@
     font-size: 20px;
   }
 
+  .navbar {
+    @apply fixed w-3/4 py-6 flex justify-between z-50
+  }
+
   .homeButton {
     @apply size-20 p-4 cursor-pointer bg-secondary ease-in-out duration-100 hover:bg-accent hover:-translate-y-1/4;  
   }
