@@ -1,5 +1,5 @@
 import React from "react";
-import { MdCellTower, MdLocalPhone, MdLocationPin, MdMail } from "react-icons/md";
+import { MdCellTower, MdLocationPin, MdMail } from "react-icons/md";
 import { GiConversation } from "react-icons/gi";
 
 export default function Contact() {
@@ -19,11 +19,7 @@ export default function Contact() {
                 </form>
             </div>
             <div className="flex flex-col justify-evenly bg-primary rounded-3xl row-start-4 row-end-6 col-start-7 col-span-4">
-                <h3 className="mx-auto my-2 font-bold"> Contact Information </h3>
-                <div className="flex bg-secondary rounded-lg mx-4 p-2">
-                    <MdLocalPhone className="my-auto mx-2"/>
-                    <span>925-922-2063</span>
-                </div>
+                <h3 className="mx-auto font-bold"> Contact Information </h3>
                 <div className="flex bg-secondary rounded-lg mx-4 p-2">
                     <MdMail className="my-auto mx-2"/>
                     <span>adithya.iyer@email.ucr.edu</span>
