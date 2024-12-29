@@ -1,4 +1,4 @@
-import React from "react";
+import Link from 'next/link';
 
 export default function About() {
     return (
@@ -16,7 +16,7 @@ export default function About() {
                     When I&apos;m not coding or reading papers, you can find me practicing piano or guitar.
                 </p>
                 <button className="ml-auto text-lg bg-secondary rounded-md px-4 py-2 drop-shadow-xl hover:bg-accent hover:scale-110">
-                    Read More
+                    <Link href="/bio"> Read More </Link>
                 </button>
             </div>
         </section>
