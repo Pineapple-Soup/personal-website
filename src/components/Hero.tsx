@@ -9,6 +9,7 @@ export default function Hero() {
             <h1>
                 Hello!
                 <span className="text-8xl inline-block hover:animate-wave cursor-pointer ml-12">👋</span>
+                <br/>
                 I&apos;m Adithya
             </h1>
             <sub className="leading-normal">
