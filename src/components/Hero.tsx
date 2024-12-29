@@ -3,6 +3,12 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { MdDocumentScanner, MdEmail } from "react-icons/md";
 
 export default function Hero() {
+
+    const email = process.env.EMAIL;
+    const resume_url = process.env.RESUME_URL;
+    const linkedin_url = process.env.LINKEDIN_URL;
+    const github_url = process.env.GITHUB_URL;
+
    return (
     <section id="home" className="w-full h-screen grid grid-cols-2">
         <div className="flex flex-col grow justify-center">
@@ -16,16 +22,16 @@ export default function Hero() {
                 I love building things, solving puzzles, and learning new skills
             </sub>
             <div className="flex mx-auto my-12 rounded-full drop-shadow-xl">
-                <a href="mailto:adithya.iyer@email.ucr.edu" target="_blank" rel="noreferrer noopener">
+                <a href={`mailto:${email}`} target="_blank" rel="noreferrer noopener">
                     <MdEmail className="homeButton rounded-l-full"/>
                 </a>
-                <a href="https://drive.google.com/file/d/1cpX2s8RyJJZQsQ9Vy0ExwVyMRROp7L15/view?usp=sharing" target="_blank" rel="noreferrer noopener">
+                <a href={resume_url} target="_blank" rel="noreferrer noopener">
                     <MdDocumentScanner className="homeButton -mx-0.5"/>
                 </a>
-                <a href="https://www.linkedin.com/in/adithya-b-iyer" target="_blank" rel="noreferrer noopener">
+                <a href={linkedin_url} target="_blank" rel="noreferrer noopener">
                     <FaLinkedin className="homeButton -mx-0.5"/>
                 </a>
-                <a href="https://www.github.com/Pineapple-Soup" target="_blank" rel="noreferrer noopener">
+                <a href={github_url} target="_blank" rel="noreferrer noopener">
                     <FaGithub className="homeButton rounded-r-full"/>
                 </a>
             </div>

@@ -3,6 +3,10 @@ import { MdCellTower, MdLocationPin, MdMail } from "react-icons/md";
 import { GiConversation } from "react-icons/gi";
 
 export default function Contact() {
+
+    const email = process.env.EMAIL;
+    const address = process.env.ADDRESS;
+
     return (
         <section id="contact" className="w-full h-screen grid grid-rows-6 grid-cols-12 gap-4">
             <div className="bg-primary flex flex-col justify-evenly rounded-3xl row-start-2 row-end-6 col-start-1 col-end-7">
@@ -13,11 +17,11 @@ export default function Contact() {
                 <h3 className="mx-auto font-bold"> Contact Information </h3>
                 <div className="flex bg-secondary rounded-lg mx-4 p-2">
                     <MdMail className="my-auto mx-2"/>
-                    <span>adithya.iyer@email.ucr.edu</span>
+                    <span>{email}</span>
                 </div>
                 <div className="flex bg-secondary rounded-lg mx-4 p-2">
                     <MdLocationPin className="my-auto mx-2"/>
-                    <span>Pleasanton, CA 94566</span>
+                    <span>{address}</span>
                 </div>
             </div>
             <div className="row-start-2 row-end-4 col-start-8 col-span-4">
