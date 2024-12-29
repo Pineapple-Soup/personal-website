@@ -5,7 +5,7 @@ const navItems = ["Home", "About", "Projects", "Contact"];
 
 export default function Navbar() {
     return (
-        <header className="fixed w-3/4 flex my-2 justify-between">
+        <header className="fixed w-3/4 flex py-6 justify-between z-50">
             <ThemeToggle />
             <ul className="flex justify-between align-center group w-1/2">
                 {navItems.map((item, index) => (
