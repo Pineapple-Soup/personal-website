@@ -1,16 +1,29 @@
 'use client';
 
-import { CardProps } from './Card';
-import Card from './Card';
+import Card, { CardProps } from '@/components/Card';
 import React, { useState } from 'react';
 import Link from 'next/link';
+import project_data from '@/data/projects.json';
 
-
-export interface CarouselProps {
-    cards: readonly CardProps[];
+const getImage = async (image: string) => {
+    const img = await import(`@/../public/assets/${image}.png`);
+    return img.default;
 }
 
-const Carousel = ({ cards }: CarouselProps) => {
+const cards: CardProps[] = await Promise.all(project_data.map(async (project) => {
+    const image = await getImage(project.name);
+    return {
+        title: project.title,
+        description: project.description,
+        status: project.status,
+        image: image,
+        stack: project.stack,
+    };
+}));
+
+
+export default function Carousel() {
+
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAnimating, setIsAnimating] = useState(0);
     
@@ -48,5 +61,3 @@ const Carousel = ({ cards }: CarouselProps) => {
         </div>
     );
 };
-
-export default Carousel;

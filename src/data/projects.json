@@ -1,0 +1,37 @@
+[
+    {
+        "name": "interplanetary",
+        "title": "InteR'Planetary",
+        "description": "Webapp to customize and test exoplanet habitability",
+        "status": "Completed",
+        "stack": ["React", "Three.js", "Python", "Flask"]
+    },
+    {
+        "name": "scicaml",
+        "title": "SciCaml",
+        "description": "An OCaml Machine Learning Library",
+        "status": "In Progress",
+        "stack": ["OCaml", "Dune"]
+    },
+    {
+        "name": "sudoku",
+        "title": "Sudoku Solver",
+        "description": "Interative Sudoku Solver with CLI and GUI options",
+        "status": "Completed",
+        "stack": ["Python", "Tkinter"]
+    },
+    {
+        "name": "website",
+        "title": "Personal Website",
+        "description": "The website you're on right now!",
+        "status": "In Progress",
+        "stack": ["React", "Next.js", "TailwindCSS"]
+    },
+    {
+        "name": "autochemlab",
+        "title": "AutoChemLab",
+        "description": "A tool to automate Organic Chemistry Pre-Lab Assignments",
+        "status": "Completed",
+        "stack": ["Python"]
+    }
+]
