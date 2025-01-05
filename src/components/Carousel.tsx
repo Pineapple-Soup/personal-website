@@ -21,9 +21,7 @@ const cards: CardProps[] = await Promise.all(project_data.map(async (project) =>
     };
 }));
 
-
 export default function Carousel() {
-
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAnimating, setIsAnimating] = useState(0);
     
@@ -46,18 +44,31 @@ export default function Carousel() {
     };
 
     return (
-        <div className="carousel">
-            <div onClick={handlePrevClick} className={`flex-1 opacity-50 rounded-3xl translate-x-1/4 translate-y-8 ${isAnimating === -1 ? "transition-all ease-out duration-300 translate-x-full -translate-y-2 !opacity-100 z-20" : isAnimating === 1 ? "transition-all ease-out duration-300 !opacity-0" : ""}`}>
-                <Card {...cards[currentIndex === 0 ? cards.length - 1 : currentIndex - 1]} />
+        <>
+            <div className="carousel">
+                <div onClick={handlePrevClick} className={`flex-1 opacity-50 rounded-3xl translate-x-1/4 translate-y-8 ${isAnimating === -1 ? "transition-all ease-out duration-300 translate-x-full -translate-y-2 !opacity-100 z-20" : isAnimating === 1 ? "transition-all ease-out duration-300 !opacity-0" : ""}`}>
+                    <Card {...cards[currentIndex === 0 ? cards.length - 1 : currentIndex - 1]} />
+                </div>
+                <div className={`flex-1 z-10 rounded-3xl ${isAnimating === -1 ? "transition-all ease-out duration-300 translate-x-3/4 translate-y-8 opacity-50 -z-10" : isAnimating === 1 ? "transition-all ease-out duration-300 -translate-x-3/4 translate-y-8 opacity-50 z-20" : ""}`}>
+                    <Link href={`/projects/${currentIndex}`}>
+                        <Card {...cards[currentIndex]} />
+                    </Link>
+                </div>
+                <div onClick={handleNextClick} className={`flex-1 opacity-50 rounded-3xl -translate-x-1/4 translate-y-8 ${isAnimating === -1 ? "transition-all ease-out duration-300 !opacity-0" : isAnimating === 1 ? "transition-all ease-out duration-300 -translate-x-full -translate-y-2 !opacity-100 z-20" : ""}`}>
+                    <Card {...cards[currentIndex === cards.length - 1 ? 0 : currentIndex + 1]} />
+                </div>
             </div>
-            <div className={`flex-1 z-10 rounded-3xl ${isAnimating === -1 ? "transition-all ease-out duration-300 translate-x-3/4 translate-y-8 opacity-50 -z-10" : isAnimating === 1 ? "transition-all ease-out duration-300 -translate-x-3/4 translate-y-8 opacity-50 z-20" : ""}`}>
-                <Link href={`/projects/${currentIndex}`}>
-                    <Card {...cards[currentIndex]} />
-                </Link>
+            <div className="flex flex-col justify-center items-center">
+                {/* Numbers */}
+                {currentIndex+1}/{cards.length}
+
+                {/* Dots */}
+                <ul className='flex justify-center'>
+                    {cards.map((_, index) => (
+                        <li key={index} onClick={() => setCurrentIndex(index)} className={`w-2 h-2 m-2 rounded-full bg-secondary ${index === currentIndex ? "!bg-accent scale-110" : ""}`}></li>
+                    ))}
+                </ul>
             </div>
-            <div onClick={handleNextClick} className={`flex-1 opacity-50 rounded-3xl -translate-x-1/4 translate-y-8 ${isAnimating === -1 ? "transition-all ease-out duration-300 !opacity-0" : isAnimating === 1 ? "transition-all ease-out duration-300 -translate-x-full -translate-y-2 !opacity-100 z-20" : ""}`}>
-                <Card {...cards[currentIndex === cards.length - 1 ? 0 : currentIndex + 1]} />
-            </div>
-        </div>
+        </>
     );
 };
