@@ -69,7 +69,7 @@
   }
 
   .carousel {
-    @apply h-1/2 flex justify-center;
+    @apply h-1/2 my-12 flex justify-center;
   }
 
   .badge {
