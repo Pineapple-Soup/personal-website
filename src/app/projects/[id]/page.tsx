@@ -3,7 +3,6 @@ import ThemeToggle from '@/components/ThemeToggle';
 import project_data from '@/data/projects.json';
 
 export default async function ProjectPage({ params }: { params: Promise<{ id: number }> }) {
-
     const id = (await params).id;
     const title = project_data[id].title;
 

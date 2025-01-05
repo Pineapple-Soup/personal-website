@@ -1,8 +1,8 @@
 'use client';
 
-import Card, { CardProps } from '@/components/Card';
-import React, { useState } from 'react';
 import Link from 'next/link';
+import React, { useState } from 'react';
+import Card, { CardProps } from '@/components/Card';
 import project_data from '@/data/projects.json';
 
 const getImage = async (image: string) => {
