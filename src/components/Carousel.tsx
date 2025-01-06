@@ -25,28 +25,44 @@ export default function Carousel() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAnimating, setIsAnimating] = useState(0);
     
-    const handlePrevClick = () => {
+    const handlePrevClick = (delay: number) => {
         if (isAnimating) return;
         setIsAnimating(-1);
         setTimeout(() => {
             setCurrentIndex((prevIndex) => (prevIndex === 0 ? cards.length - 1 : prevIndex - 1));
             setIsAnimating(0);
-        }, 250);
+        }, delay);
     };
 
-    const handleNextClick = () => {
+    const handleNextClick = (delay: number) => {
         if (isAnimating) return;
         setIsAnimating(1);
         setTimeout(() => {
             setCurrentIndex((prevIndex) => (prevIndex === cards.length - 1 ? 0 : prevIndex + 1));
             setIsAnimating(0);
-        }, 250);
+        }, delay);
     };
+
+    const handleDotClick = (index: number, delay: number) => {
+        if (index === currentIndex) return;
+        const forwardDistance = (index - currentIndex + cards.length) % cards.length;
+        const backwardDistance = (currentIndex - index + cards.length) % cards.length;
+        const direction = forwardDistance <= backwardDistance ? 1 : -1;
+        let steps = direction === 1 ? forwardDistance : backwardDistance;
+        while (steps > 0) {
+            if (direction === 1) {
+                handleNextClick(delay);
+            } else {
+                handlePrevClick(delay);
+            }
+            steps--;
+        }
+    }
 
     return (
         <>
             <div className="carousel">
-                <div onClick={handlePrevClick} className={`flex-1 opacity-50 rounded-3xl translate-x-1/4 translate-y-8 ${isAnimating === -1 ? "transition-all ease-out duration-300 translate-x-full -translate-y-2 !opacity-100 z-20" : isAnimating === 1 ? "transition-all ease-out duration-300 !opacity-0" : ""}`}>
+                <div onClick={() => handlePrevClick(100)} className={`flex-1 opacity-50 rounded-3xl translate-x-1/4 translate-y-8 ${isAnimating === -1 ? "transition-all ease-out duration-300 translate-x-full -translate-y-2 !opacity-100 z-20" : isAnimating === 1 ? "transition-all ease-out duration-300 !opacity-0" : ""}`}>
                     <Card {...cards[currentIndex === 0 ? cards.length - 1 : currentIndex - 1]} />
                 </div>
                 <div className={`flex-1 z-10 rounded-3xl ${isAnimating === -1 ? "transition-all ease-out duration-300 translate-x-3/4 translate-y-8 opacity-50 -z-10" : isAnimating === 1 ? "transition-all ease-out duration-300 -translate-x-3/4 translate-y-8 opacity-50 z-20" : ""}`}>
@@ -54,7 +70,7 @@ export default function Carousel() {
                         <Card {...cards[currentIndex]} />
                     </Link>
                 </div>
-                <div onClick={handleNextClick} className={`flex-1 opacity-50 rounded-3xl -translate-x-1/4 translate-y-8 ${isAnimating === -1 ? "transition-all ease-out duration-300 !opacity-0" : isAnimating === 1 ? "transition-all ease-out duration-300 -translate-x-full -translate-y-2 !opacity-100 z-20" : ""}`}>
+                <div onClick={() => handleNextClick(100)} className={`flex-1 opacity-50 rounded-3xl -translate-x-1/4 translate-y-8 ${isAnimating === -1 ? "transition-all ease-out duration-300 !opacity-0" : isAnimating === 1 ? "transition-all ease-out duration-300 -translate-x-full -translate-y-2 !opacity-100 z-20" : ""}`}>
                     <Card {...cards[currentIndex === cards.length - 1 ? 0 : currentIndex + 1]} />
                 </div>
             </div>
@@ -65,7 +81,7 @@ export default function Carousel() {
                 {/* Dots */}
                 <ul className='flex justify-center'>
                     {cards.map((_, index) => (
-                        <li key={index} onClick={() => setCurrentIndex(index)} className={`w-2 h-2 m-2 rounded-full bg-secondary ${index === currentIndex ? "!bg-accent scale-110" : ""}`}></li>
+                        <li key={index} onClick={() => handleDotClick(index, 100)} className={`w-2 h-2 m-2 rounded-full bg-secondary ${index === currentIndex ? "!bg-accent scale-110" : ""}`}></li>
                     ))}
                 </ul>
             </div>
