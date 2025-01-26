@@ -66,7 +66,7 @@ export default function Carousel() {
                     <Card {...cards[currentIndex === 0 ? cards.length - 1 : currentIndex - 1]} />
                 </div>
                 <div className={`flex-1 z-10 rounded-3xl ${isAnimating === -1 ? "transition-all ease-out duration-300 translate-x-3/4 translate-y-8 opacity-50 -z-10" : isAnimating === 1 ? "transition-all ease-out duration-300 -translate-x-3/4 translate-y-8 opacity-50 z-20" : ""}`}>
-                    <Link href={`/projects/${currentIndex}`}>
+                    <Link href={`/projects/${project_data[currentIndex].name}`}>
                         <Card {...cards[currentIndex]} />
                     </Link>
                 </div>
