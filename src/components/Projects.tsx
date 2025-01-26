@@ -1,5 +1,5 @@
-import Carousel from "@/components/Carousel";
 import Link from "next/link";
+import Carousel from "@/components/Carousel";
 
 export default function Projects() {
     return (

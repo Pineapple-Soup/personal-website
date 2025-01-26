@@ -1,9 +1,8 @@
-import ContactForm from "@/components/ContactForm";
 import { MdCellTower, MdLocationPin, MdMail } from "react-icons/md";
 import { GiConversation } from "react-icons/gi";
+import ContactForm from "@/components/ContactForm";
 
 export default function Contact() {
-
     const email = process.env.EMAIL;
     const address = process.env.ADDRESS;
 
