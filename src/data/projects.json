@@ -3,6 +3,8 @@
         "name": "interplanetary",
         "title": "InteR'Planetary",
         "description": "Webapp to customize and test exoplanet habitability",
+        "overview": "",
+        "motivation": "",
         "status": "Completed",
         "stack": ["React", "Three.js", "Python", "Flask"],
         "github": "http://github.com/pineapple-soup/interplanetary"
@@ -11,6 +13,8 @@
         "name": "scicaml",
         "title": "SciCaml",
         "description": "An OCaml Machine Learning Library",
+        "overview": "",
+        "motivation": "",
         "status": "In Progress",
         "stack": ["OCaml", "Dune"],
         "github": "http://github.com/pineapple-soup/scicaml"
@@ -19,6 +23,8 @@
         "name": "sudoku",
         "title": "Sudoku Solver",
         "description": "Interative Sudoku Solver with CLI and GUI options",
+        "overview": "",
+        "motivation": "",
         "status": "Completed",
         "stack": ["Python", "Tkinter"],
         "github": "http://github.com/pineapple-soup/sudoku-solver"
@@ -27,6 +33,8 @@
         "name": "website",
         "title": "Personal Website",
         "description": "The website you're on right now!",
+        "overview": "",
+        "motivation": "",
         "status": "In Progress",
         "stack": ["React", "Next.js", "TailwindCSS"],
         "github": "http://github.com/pineapple-soup/website"
@@ -35,6 +43,8 @@
         "name": "autochemlab",
         "title": "AutoChemLab",
         "description": "A tool to automate Organic Chemistry Pre-Lab Assignments",
+        "overview": "",
+        "motivation": "",
         "status": "Completed",
         "stack": ["Python"],
         "github": "http://github.com/pineapple-soup/autochemlab"
