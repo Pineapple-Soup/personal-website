@@ -1,5 +1,15 @@
 [
     {
+        "name": "generositree",
+        "title": "GenerosiTree",
+        "description": "An image sharing platform for promoting sustainable actions and reforestation",
+        "overview": "",
+        "motivation": "",
+        "status": "Completed",
+        "stack": ["React", "Typescript", "Firebase"],
+        "github": "http://github.com/tingtingtingtingtingtingtingtingtingtin/generositree"
+    },
+    {
         "name": "interplanetary",
         "title": "InteR'Planetary",
         "description": "Webapp to customize and test exoplanet habitability",
