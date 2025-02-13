@@ -1,5 +1,5 @@
-import ThemeToggle from "@/components/ThemeToggle";
 import Link from "next/link";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const navItems = ["Home", "About", "Projects", "Contact"];
 
