@@ -5,16 +5,16 @@
 :root {
   --background: #ffc96b;
   --foreground: #171108;
-  --primary: #E09D29;
-  --secondary: #E0BD8A;
-  --accent: #69CC74;
+  --primary: #e09d29;
+  --secondary: #e0bd8a;
+  --accent: #69cc74;
 }
 
 .dark {
   --background: #18140c;
   --foreground: #eae8e4;
   --primary: #d8b05f;
-  --secondary: #E09D29;
+  --secondary: #e09d29;
   --accent: #ffc96b;
 }
 
@@ -29,7 +29,7 @@
   body {
     color: var(--foreground);
     background: var(--background);
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: "IBM Plex Mono", monospace;
     transition: background-color 0.3s, color 0.3s;
   }
 
@@ -57,11 +57,11 @@
   }
 
   .navbar {
-    @apply fixed w-3/4 pt-6 pb-2 flex justify-between backdrop-blur-sm z-50
+    @apply fixed w-3/4 pt-6 pb-2 flex justify-between backdrop-blur-sm z-50;
   }
 
   .homeButton {
-    @apply size-20 p-4 cursor-pointer bg-secondary ease-in-out duration-100 hover:bg-accent hover:-translate-y-1/4;  
+    @apply size-20 p-4 cursor-pointer bg-secondary ease-in-out duration-100 hover:bg-accent hover:-translate-y-1/4;
   }
 
   .card {
@@ -78,7 +78,9 @@
 }
 
 @keyframes wave {
-  0%, 50%, 100% {
+  0%,
+  50%,
+  100% {
     transform: rotate(5deg); /* Start in neutral position */
   }
   25% {

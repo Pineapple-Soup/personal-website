@@ -1,22 +1,33 @@
-'use client';
+"use client";
 
-import { useTheme } from 'next-themes';
-import { useState, useEffect } from 'react';
+import { useTheme } from "next-themes";
+import { useState, useEffect } from "react";
 import { BsFillMoonStarsFill, BsSunFill } from "react-icons/bs";
 
 export default function ThemeToggle() {
-    const { theme, setTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-    useEffect(() => { setMounted(true); }, []);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-    if (!mounted) return (<BsSunFill className="cursor-pointer my-auto size-10 icon-transition"/>);
-
+  if (!mounted)
     return (
-        (theme === "dark" || (theme === "system" && window.matchMedia('(prefers-color-scheme: dark)').matches)) ? (
-            <BsSunFill className="cursor-pointer my-auto size-10 icon-transition" onClick={() => setTheme("light")} />
-        ) : (
-            <BsFillMoonStarsFill className="cursor-pointer my-auto size-10 icon-transition" onClick={() => setTheme("dark")} />
-        )
+      <BsSunFill className='cursor-pointer my-auto size-10 icon-transition' />
     );
+
+  return theme === "dark" ||
+    (theme === "system" &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches) ? (
+    <BsSunFill
+      className='cursor-pointer my-auto size-10 icon-transition'
+      onClick={() => setTheme("light")}
+    />
+  ) : (
+    <BsFillMoonStarsFill
+      className='cursor-pointer my-auto size-10 icon-transition'
+      onClick={() => setTheme("dark")}
+    />
+  );
 }
