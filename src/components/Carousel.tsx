@@ -118,7 +118,7 @@ export default function Carousel() {
             <li
               key={index}
               onClick={() => handleDotClick(index, 100)}
-              className={`w-2 h-2 m-2 rounded-full bg-secondary ${
+              className={`w-2 h-2 m-2 rounded-full bg-secondary cursor-pointer ${
                 index === currentIndex ? "!bg-accent scale-110" : ""
               }`}></li>
           ))}
