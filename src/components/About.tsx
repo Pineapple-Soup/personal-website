@@ -13,8 +13,8 @@ export default function About() {
   const [hover, setHover] = useState("");
 
   return (
-    <section id='about' className='w-full h-screen grid grid-cols-2 group'>
-      <div className='h-screen grid grid-cols-5 grid-rows-6 gap-4 mx-4'>
+    <section id='about' className='w-full h-screen grid grid-cols-2 gap-16'>
+      <div className='h-screen grid grid-cols-5 grid-rows-6'>
         <div
           className='col-span-2 col-start-2 row-start-2'
           onMouseOver={() => setHover("cs")}
