@@ -1,6 +1,6 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { MdDocumentScanner, MdEmail } from "react-icons/md";
-import ThreeScene from "@/components/ThreeScene";
+// import ThreeScene from "@/components/ThreeScene";
 
 export default function Hero() {
   const email = process.env.EMAIL;
@@ -37,8 +37,8 @@ export default function Hero() {
           </a>
         </div>
       </div>
-      <div className='border'>
-        <ThreeScene />
+      <div>
+        {/* <ThreeScene /> */}
         {/* Placeholder for image */}
       </div>
     </section>
