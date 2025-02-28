@@ -1,6 +1,6 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { MdDocumentScanner, MdEmail } from "react-icons/md";
-// import ThreeScene from "@/components/ThreeScene";
+import Pineapple from "@/components/Pineapple";
 
 export default function Hero() {
   const email = process.env.EMAIL;
@@ -38,8 +38,7 @@ export default function Hero() {
         </div>
       </div>
       <div>
-        {/* <ThreeScene /> */}
-        {/* Placeholder for image */}
+        <Pineapple />
       </div>
     </section>
   );
