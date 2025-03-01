@@ -183,6 +183,17 @@ export default function Pineapple() {
       controls.autoRotate = true;
     });
 
+    window.addEventListener("resize", () => {
+      const dimensions = {
+        width: container.clientWidth,
+        height: container.clientHeight,
+      };
+
+      renderer.setSize(dimensions.width, dimensions.height);
+      camera.aspect = dimensions.width / dimensions.height;
+      camera.updateProjectionMatrix();
+    });
+
     function animate() {
       requestAnimationFrame(animate);
       controls.update();
@@ -197,5 +208,5 @@ export default function Pineapple() {
     };
   }, []);
 
-  return <div ref={containerRef} style={{ width: "100%", height: "100%" }} />;
+  return <div ref={containerRef} className='w-full h-full' />;
 }
