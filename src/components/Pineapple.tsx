@@ -90,7 +90,7 @@ function createCrown(
   for (let i = 0; i < leafCount; i++) {
     const leaf = createLeaf(
       height - radius,
-      height,
+      height - 4,
       6,
       color,
       outline,
@@ -141,6 +141,8 @@ export default function Pineapple() {
     const container = containerRef.current;
     const { scene, camera, renderer } = InitializeScene(container);
     const controls = new OrbitControls(camera, renderer.domElement);
+    controls.autoRotate = true;
+    controls.enableDamping = true;
     controls.enableZoom = false;
     controls.enablePan = false;
 
@@ -162,10 +164,35 @@ export default function Pineapple() {
     const crown = createCrown(height, radius, 8, 0x006400, true, 0x000000);
     crown.position.set(0, radius, 0);
     pineapple.position.set(0, -5, 0);
+    pineapple.lookAt(-20, 0, 0);
     pineapple.add(crown);
     scene.add(pineapple);
 
     camera.position.z = 25;
+
+    container.addEventListener("mouseenter", () => {
+      controls.autoRotate = false;
+      container.style.cursor = "grab";
+    });
+
+    container.addEventListener("mousedown", () => {
+      container.style.cursor = "grabbing";
+    });
+
+    container.addEventListener("mouseleave", () => {
+      controls.autoRotate = true;
+    });
+
+    window.addEventListener("resize", () => {
+      const dimensions = {
+        width: container.clientWidth,
+        height: container.clientHeight,
+      };
+
+      renderer.setSize(dimensions.width, dimensions.height);
+      camera.aspect = dimensions.width / dimensions.height;
+      camera.updateProjectionMatrix();
+    });
 
     function animate() {
       requestAnimationFrame(animate);
@@ -181,5 +208,5 @@ export default function Pineapple() {
     };
   }, []);
 
-  return <div ref={containerRef} style={{ width: "100%", height: "100%" }} />;
+  return <div ref={containerRef} className='w-full h-full' />;
 }
