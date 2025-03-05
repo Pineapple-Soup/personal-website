@@ -171,15 +171,15 @@ export default function Pineapple() {
     camera.position.z = 25;
 
     container.addEventListener("mouseenter", () => {
-      controls.autoRotate = false;
       container.style.cursor = "grab";
     });
 
     container.addEventListener("mousedown", () => {
+      controls.autoRotate = false;
       container.style.cursor = "grabbing";
     });
 
-    container.addEventListener("mouseleave", () => {
+    container.addEventListener("mouseup", () => {
       controls.autoRotate = true;
     });
 
