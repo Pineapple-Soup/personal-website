@@ -71,12 +71,12 @@ export default function Carousel() {
     <>
       <div className='carousel'>
         <div
-          onClick={() => handlePrevClick(100)}
+          onClick={() => handlePrevClick(300)}
           className={`flex-1 opacity-50 rounded-3xl translate-x-1/4 translate-y-8 ${
             isAnimating === -1
-              ? "transition-all ease-out duration-300 translate-x-full -translate-y-2 !opacity-100 z-20"
+              ? "transition-all ease-out duration-500 translate-x-full -translate-y-2 !opacity-100 z-20"
               : isAnimating === 1
-              ? "transition-all ease-out duration-300 !opacity-0"
+              ? "transition-all ease-out duration-500 !opacity-0"
               : ""
           }`}>
           <Card
@@ -86,9 +86,9 @@ export default function Carousel() {
         <div
           className={`flex-1 z-10 rounded-3xl ${
             isAnimating === -1
-              ? "transition-all ease-out duration-300 translate-x-3/4 translate-y-8 opacity-50 -z-10"
+              ? "transition-all ease-out duration-500 translate-x-3/4 translate-y-8 opacity-50 -z-10"
               : isAnimating === 1
-              ? "transition-all ease-out duration-300 -translate-x-3/4 translate-y-8 opacity-50 z-20"
+              ? "transition-all ease-out duration-500 -translate-x-3/4 translate-y-8 opacity-50 z-20"
               : ""
           }`}>
           <Link href={`/projects/${project_data[currentIndex].name}`}>
@@ -96,12 +96,12 @@ export default function Carousel() {
           </Link>
         </div>
         <div
-          onClick={() => handleNextClick(100)}
+          onClick={() => handleNextClick(300)}
           className={`flex-1 opacity-50 rounded-3xl -translate-x-1/4 translate-y-8 ${
             isAnimating === -1
-              ? "transition-all ease-out duration-300 !opacity-0"
+              ? "transition-all ease-out duration-500 !opacity-0"
               : isAnimating === 1
-              ? "transition-all ease-out duration-300 -translate-x-full -translate-y-2 !opacity-100 z-20"
+              ? "transition-all ease-out duration-500 -translate-x-full -translate-y-2 !opacity-100 z-20"
               : ""
           }`}>
           <Card
