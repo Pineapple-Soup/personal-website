@@ -1,21 +1,57 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-:root {
-  --background: #ffc96b;
-  --foreground: #171108;
-  --primary: #e09d29;
-  --secondary: #e0bd8a;
-  --accent: #69cc74;
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
 }
 
-.dark {
-  --background: #18140c;
-  --foreground: #eae8e4;
-  --primary: #d8b05f;
-  --secondary: #e09d29;
-  --accent: #ffc96b;
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility animate-wave {
+  animation: wave 2s ease-in-out infinite;
+}
+
+@utility icon-transition {
+  transition:
+    transform 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
+}
+
+@layer utilities {
+  :root {
+    --background: #ffc96b;
+    --foreground: #171108;
+    --primary: #e09d29;
+    --secondary: #e0bd8a;
+    --accent: #69cc74;
+  }
+
+  .dark {
+    --background: #18140c;
+    --foreground: #eae8e4;
+    --primary: #d8b05f;
+    --secondary: #e09d29;
+    --accent: #ffc96b;
+  }
 }
 
 @layer base {
@@ -57,7 +93,7 @@
   }
 
   .navbar {
-    @apply fixed w-3/4 pt-6 pb-2 flex justify-between backdrop-blur-sm z-50;
+    @apply fixed w-3/4 pt-6 pb-2 flex justify-between backdrop-blur-xs z-50;
   }
 
   .homeButton {
@@ -77,28 +113,24 @@
   }
 }
 
-@keyframes wave {
-  0%,
-  50%,
-  100% {
-    transform: rotate(5deg); /* Start in neutral position */
-  }
-  25% {
-    transform: rotate(-10deg); /* Slight tilt left */
-  }
-  75% {
-    transform: rotate(-10deg); /* Tilt back to left */
+@layer utilities {
+  @keyframes wave {
+    0%,
+    50%,
+    100% {
+      transform: rotate(5deg); /* Start in neutral position */
+    }
+    25% {
+      transform: rotate(-10deg); /* Slight tilt left */
+    }
+    75% {
+      transform: rotate(-10deg); /* Tilt back to left */
+    }
   }
 }
 
 @layer utilities {
   html {
     scroll-behavior: smooth;
-  }
-  .animate-wave {
-    animation: wave 2s ease-in-out infinite;
-  }
-  .icon-transition {
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   }
 }
