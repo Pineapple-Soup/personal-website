@@ -74,9 +74,9 @@ export default function Carousel() {
           onClick={() => handlePrevClick(300)}
           className={`flex-1 opacity-50 rounded-3xl translate-x-1/4 translate-y-8 ${
             isAnimating === -1
-              ? "transition-all ease-out duration-500 translate-x-full -translate-y-2 !opacity-100 z-20"
+              ? "transition-all ease-out duration-500 translate-x-full -translate-y-2 opacity-100! z-20"
               : isAnimating === 1
-              ? "transition-all ease-out duration-500 !opacity-0"
+              ? "transition-all ease-out duration-500 opacity-0!"
               : ""
           }`}>
           <Card
@@ -99,9 +99,9 @@ export default function Carousel() {
           onClick={() => handleNextClick(300)}
           className={`flex-1 opacity-50 rounded-3xl -translate-x-1/4 translate-y-8 ${
             isAnimating === -1
-              ? "transition-all ease-out duration-500 !opacity-0"
+              ? "transition-all ease-out duration-500 opacity-0!"
               : isAnimating === 1
-              ? "transition-all ease-out duration-500 -translate-x-full -translate-y-2 !opacity-100 z-20"
+              ? "transition-all ease-out duration-500 -translate-x-full -translate-y-2 opacity-100! z-20"
               : ""
           }`}>
           <Card
@@ -119,7 +119,7 @@ export default function Carousel() {
               key={index}
               onClick={() => handleDotClick(index, 100)}
               className={`w-2 h-2 m-2 rounded-full bg-secondary cursor-pointer ${
-                index === currentIndex ? "!bg-accent scale-110" : ""
+                index === currentIndex ? "bg-accent! scale-110" : ""
               }`}></li>
           ))}
         </ul>
