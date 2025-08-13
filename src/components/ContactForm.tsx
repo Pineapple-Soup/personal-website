@@ -17,6 +17,7 @@ export default function ContactForm() {
   >("idle");
 
   const resetForm = () => {
+    setTimeout(() => setFormState("idle"), 2000);
     setForm({
       firstName: "",
       lastName: "",
@@ -24,7 +25,6 @@ export default function ContactForm() {
       subject: "",
       message: "",
     });
-    setTimeout(() => setFormState("idle"), 2000);
   };
 
   const handleChange = (
