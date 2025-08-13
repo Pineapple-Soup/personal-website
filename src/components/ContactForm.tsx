@@ -12,7 +12,11 @@ export default function ContactForm() {
     message: "",
   });
 
-  const clearForm = () => {
+  const [formState, setFormState] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
+
+  const resetForm = () => {
     setForm({
       firstName: "",
       lastName: "",
@@ -20,6 +24,7 @@ export default function ContactForm() {
       subject: "",
       message: "",
     });
+    setTimeout(() => setFormState("idle"), 2000);
   };
 
   const handleChange = (
@@ -35,6 +40,8 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setFormState("loading");
+
     const res = await fetch("/api/send", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -42,11 +49,11 @@ export default function ContactForm() {
     });
 
     if (res.ok) {
-      alert("Message sent!");
-      clearForm();
+      setFormState("success");
+      resetForm();
     } else {
-      alert("Something went wrong.");
-      clearForm();
+      setFormState("error");
+      resetForm();
     }
   };
 
@@ -102,7 +109,7 @@ export default function ContactForm() {
       <button
         type='submit'
         className='bg-secondary hover:bg-accent rounded-lg p-2 my-2'>
-        Submit
+        {formState === "idle" && <span>Submit</span>}
       </button>
     </form>
   );
