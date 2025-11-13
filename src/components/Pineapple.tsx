@@ -16,7 +16,7 @@ function InitializeScene(container: HTMLDivElement) {
     0.1,
     1000
   );
-  const renderer = new THREE.WebGLRenderer();
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(dimensions.width, dimensions.height);
   renderer.setClearColor(0x000000, 0);
   container.appendChild(renderer.domElement);
