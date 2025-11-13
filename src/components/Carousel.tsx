@@ -147,13 +147,13 @@ export default function Carousel() {
       <div className='flex items-center justify-center'>
         <motion.div
           onClick={handlePrev}
-          className='w-96 cursor-pointer rounded-3xl'
+          className='cursor-pointer rounded-3xl'
           initial={slotFor(-1)}
           animate={prevControls}>
           <Card {...visible.prev} />
         </motion.div>
         <motion.div
-          className='w-96 cursor-pointer rounded-3xl'
+          className='cursor-pointer rounded-3xl'
           initial={slotFor(0)}
           animate={centerControls}>
           <Link href={`/projects/${project_data[currentIndex].name}`}>
@@ -162,7 +162,7 @@ export default function Carousel() {
         </motion.div>
         <motion.div
           onClick={handleNext}
-          className='w-96 cursor-pointer rounded-3xl'
+          className='cursor-pointer rounded-3xl'
           initial={slotFor(1)}
           animate={nextControls}>
           <Card {...visible.next} />
