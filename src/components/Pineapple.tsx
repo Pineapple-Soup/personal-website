@@ -181,6 +181,7 @@ export default function Pineapple() {
 
     container.addEventListener("mouseup", () => {
       controls.autoRotate = true;
+      container.style.cursor = "grab";
     });
 
     window.addEventListener("resize", () => {
