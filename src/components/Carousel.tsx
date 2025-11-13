@@ -1,129 +1,190 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
+import { motion, useAnimation } from "framer-motion";
 import Card, { CardProps } from "@/components/Card";
 import project_data from "@/data/projects.json";
 
-const getImage = async (image: string) => {
-  const img = await import(`@/../public/assets/${image}.png`);
-  return img.default;
-};
+const cards: CardProps[] = project_data.map((project) => ({
+  title: project.title,
+  description: project.description,
+  status: project.status,
+  image: `/assets/${project.name}.png`,
+  stack: project.stack,
+}));
 
-const cards: CardProps[] = await Promise.all(
-  project_data.map(async (project) => {
-    const image = await getImage(project.name);
+const slotFor = (i: number, distX = 0, distY = 25) => {
+  if (i === -1)
     return {
-      title: project.title,
-      description: project.description,
-      status: project.status,
-      image: image,
-      stack: project.stack,
+      x: -distX,
+      y: distY,
+      scale: 0.75,
+      opacity: 0.75,
+      zIndex: 10,
     };
-  })
-);
+  if (i === 1)
+    return {
+      x: distX,
+      y: distY,
+      scale: 0.75,
+      opacity: 0.75,
+      zIndex: 10,
+    };
+  return { x: 0, y: 0, scale: 1, opacity: 1, zIndex: 20 };
+};
 
 export default function Carousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
 
-  const handlePrevClick = (delay: number) => {
+  const total = cards.length;
+
+  const prevIndex = (currentIndex - 1 + total) % total;
+  const nextIndex = (currentIndex + 1) % total;
+
+  const prevControls = useAnimation();
+  const centerControls = useAnimation();
+  const nextControls = useAnimation();
+
+  const handleNext = async () => {
     if (isAnimating) return;
-    setIsAnimating(-1);
-    setTimeout(() => {
-      setCurrentIndex((prevIndex) =>
-        prevIndex === 0 ? cards.length - 1 : prevIndex - 1
-      );
-      setIsAnimating(0);
-    }, delay);
+    setIsAnimating(true);
+
+    const prom = Promise.all([
+      prevControls.start({
+        scale: 0.75,
+        x: "100%",
+        opacity: 0.5,
+        zIndex: 0,
+        transition: { duration: 0.5 },
+      }),
+      nextControls.start({
+        x: "-100%",
+        y: 0,
+        scale: 1,
+        opacity: 1,
+        transition: { duration: 0.5 },
+      }),
+      centerControls.start({
+        x: "-100%",
+        y: 25,
+        scale: 0.75,
+        opacity: 0.75,
+        transition: { duration: 0.5 },
+      }),
+    ]);
+
+    await prom;
+
+    setCurrentIndex((i) => (i + 1) % total);
+
+    await Promise.all([
+      prevControls.set(slotFor(-1)),
+      centerControls.set(slotFor(0)),
+      nextControls.set(slotFor(1)),
+    ]);
+
+    setIsAnimating(false);
   };
 
-  const handleNextClick = (delay: number) => {
+  const handlePrev = async () => {
     if (isAnimating) return;
-    setIsAnimating(1);
-    setTimeout(() => {
-      setCurrentIndex((prevIndex) =>
-        prevIndex === cards.length - 1 ? 0 : prevIndex + 1
-      );
-      setIsAnimating(0);
-    }, delay);
+    setIsAnimating(true);
+
+    const prom = Promise.all([
+      prevControls.start({
+        x: "100%",
+        y: 0,
+        scale: 1,
+        opacity: 1,
+        transition: { duration: 0.5 },
+      }),
+      nextControls.start({
+        scale: 0.75,
+        x: "-100%",
+        opacity: 0.5,
+        zIndex: 0,
+        transition: { duration: 0.5 },
+      }),
+      centerControls.start({
+        x: "100%",
+        y: 25,
+        scale: 0.75,
+        opacity: 0.75,
+        transition: { duration: 0.5 },
+      }),
+    ]);
+
+    await prom;
+
+    setCurrentIndex((i) => (i - 1 + total) % total);
+
+    await Promise.all([
+      prevControls.set(slotFor(-1)),
+      centerControls.set(slotFor(0)),
+      nextControls.set(slotFor(1)),
+    ]);
+
+    setIsAnimating(false);
   };
 
-  const handleDotClick = (index: number, delay: number) => {
-    if (index === currentIndex) return;
-    const forwardDistance =
-      (index - currentIndex + cards.length) % cards.length;
-    const backwardDistance =
-      (currentIndex - index + cards.length) % cards.length;
-    const direction = forwardDistance <= backwardDistance ? 1 : -1;
-    let steps = direction === 1 ? forwardDistance : backwardDistance;
-    while (steps > 0) {
-      if (direction === 1) {
-        handleNextClick(delay);
-      } else {
-        handlePrevClick(delay);
-      }
-      steps--;
-    }
+  const handleDotClick = (index: number) => {
+    if (index === currentIndex || isAnimating) return;
+    setCurrentIndex(index);
   };
+
+  const visible = useMemo(() => {
+    return {
+      prev: cards[prevIndex],
+      center: cards[currentIndex],
+      next: cards[nextIndex],
+    };
+  }, [currentIndex, prevIndex, nextIndex]);
 
   return (
-    <>
-      <div className='carousel'>
-        <div
-          onClick={() => handlePrevClick(300)}
-          className={`flex-1 opacity-50 rounded-3xl translate-x-1/4 translate-y-8 ${
-            isAnimating === -1
-              ? "transition-all ease-out duration-500 translate-x-full -translate-y-2 opacity-100! z-20"
-              : isAnimating === 1
-              ? "transition-all ease-out duration-500 opacity-0!"
-              : ""
-          }`}>
-          <Card
-            {...cards[currentIndex === 0 ? cards.length - 1 : currentIndex - 1]}
-          />
-        </div>
-        <div
-          className={`flex-1 z-10 rounded-3xl ${
-            isAnimating === -1
-              ? "transition-all ease-out duration-500 translate-x-3/4 translate-y-8 opacity-50 -z-10"
-              : isAnimating === 1
-              ? "transition-all ease-out duration-500 -translate-x-3/4 translate-y-8 opacity-50 z-20"
-              : ""
-          }`}>
+    <div>
+      <div className='flex items-center justify-center'>
+        <motion.div
+          onClick={handlePrev}
+          className='w-96 cursor-pointer rounded-3xl'
+          initial={slotFor(-1)}
+          animate={prevControls}>
+          <Card {...visible.prev} />
+        </motion.div>
+        <motion.div
+          className='w-96 cursor-pointer rounded-3xl'
+          initial={slotFor(0)}
+          animate={centerControls}>
           <Link href={`/projects/${project_data[currentIndex].name}`}>
-            <Card {...cards[currentIndex]} />
+            <Card {...visible.center} />
           </Link>
-        </div>
-        <div
-          onClick={() => handleNextClick(300)}
-          className={`flex-1 opacity-50 rounded-3xl -translate-x-1/4 translate-y-8 ${
-            isAnimating === -1
-              ? "transition-all ease-out duration-500 opacity-0!"
-              : isAnimating === 1
-              ? "transition-all ease-out duration-500 -translate-x-full -translate-y-2 opacity-100! z-20"
-              : ""
-          }`}>
-          <Card
-            {...cards[currentIndex === cards.length - 1 ? 0 : currentIndex + 1]}
-          />
-        </div>
+        </motion.div>
+        <motion.div
+          onClick={handleNext}
+          className='w-96 cursor-pointer rounded-3xl'
+          initial={slotFor(1)}
+          animate={nextControls}>
+          <Card {...visible.next} />
+        </motion.div>
       </div>
-      <div className='flex flex-col justify-center items-center'>
+      <div className='flex flex-col justify-center items-center mt-4'>
         {/* Numbers */}
-        {currentIndex + 1}/{cards.length}
+        <div className='mb-2'>
+          {currentIndex + 1}/{cards.length}
+        </div>
         {/* Dots */}
         <ul className='flex justify-center'>
           {cards.map((_, index) => (
             <li
               key={index}
-              onClick={() => handleDotClick(index, 100)}
+              onClick={() => handleDotClick(index)}
               className={`w-2 h-2 m-2 rounded-full bg-secondary cursor-pointer ${
-                index === currentIndex ? "bg-accent! scale-110" : ""
+                index === currentIndex ? "!bg-accent scale-110" : ""
               }`}></li>
           ))}
         </ul>
       </div>
-    </>
+    </div>
   );
 }
