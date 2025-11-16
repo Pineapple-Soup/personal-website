@@ -12,12 +12,7 @@ const Card = ({ title, description, status, image, stack }: CardProps) => {
   return (
     <div className='flex flex-col h-full w-96 bg-primary shadow-lg overflow-hidden rounded-3xl transform duration-200 hover:-translate-y-2 hover:shadow-xl'>
       <div className='relative m-4 h-48'>
-        <Image
-          src={image}
-          alt={title}
-          fill
-          className='rounded-3xl object-contain'
-        />
+        <Image src={image} alt={title} fill className='object-contain' />
       </div>
 
       <header className='flex justify-between items-center mx-4'>
