@@ -10,16 +10,13 @@ export interface CardProps {
 
 const Card = ({ title, description, status, image, stack }: CardProps) => {
   return (
-    <div
-      className={
-        "flex flex-col h-full w-96 bg-primary shadow-lg overflow-hidden rounded-3xl transform duration-200 hover:-translate-y-2 hover:shadow-xl"
-      }>
-      <div className='relative m-4 aspect-video'>
+    <div className='flex flex-col h-full w-96 bg-primary shadow-lg overflow-hidden rounded-3xl transform duration-200 hover:-translate-y-2 hover:shadow-xl'>
+      <div className='relative m-4 h-48'>
         <Image
           src={image}
           alt={title}
           fill
-          className='aspect-video rounded-3xl object-fill'
+          className='rounded-3xl object-contain'
         />
       </div>
 
@@ -29,10 +26,10 @@ const Card = ({ title, description, status, image, stack }: CardProps) => {
           className={`rounded-3xl p-2 text-sm font-semibold
             ${
               status === "In Progress"
-                ? " bg-orange-500"
+                ? "bg-orange-500"
                 : status === "Completed"
-                  ? " bg-green-500"
-                  : " bg-red-500"
+                  ? "bg-green-500"
+                  : "bg-red-500"
             }
           `}>
           {status}
