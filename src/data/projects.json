@@ -22,7 +22,7 @@
   {
     "name": "scicaml",
     "title": "SciCaml",
-    "description": "An OCaml Machine Learning Library",
+    "description": "An machine learning library written in OCaml",
     "overview": "",
     "motivation": "",
     "status": "In Progress",
@@ -42,7 +42,7 @@
   {
     "name": "website",
     "title": "Personal Website",
-    "description": "The website you're on right now!",
+    "description": "A portfolio website showcasing my interests, projects, and contact info",
     "overview": "",
     "motivation": "",
     "status": "In Progress",

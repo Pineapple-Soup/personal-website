@@ -14,7 +14,15 @@ const cards: CardProps[] = project_data.map((project) => ({
   stack: project.stack,
 }));
 
-const slotFor = (i: number, distX = 0, distY = 25) => {
+const slotFor = (i: number, distX = 0, distY = 0) => {
+  if (i === -2)
+    return {
+      x: "200%",
+      y: distY,
+      scale: 0.75,
+      opacity: 0,
+      zIndex: 0,
+    };
   if (i === -1)
     return {
       x: -distX,
@@ -31,6 +39,14 @@ const slotFor = (i: number, distX = 0, distY = 25) => {
       opacity: 0.75,
       zIndex: 10,
     };
+  if (i === 2)
+    return {
+      x: "-200%",
+      y: distY,
+      scale: 0.75,
+      opacity: 0,
+      zIndex: 0,
+    };
   return { x: 0, y: 0, scale: 1, opacity: 1, zIndex: 20 };
 };
 
@@ -40,12 +56,16 @@ export default function Carousel() {
 
   const total = cards.length;
 
+  const prevPrevIndex = (currentIndex - 2 + total) % total;
   const prevIndex = (currentIndex - 1 + total) % total;
   const nextIndex = (currentIndex + 1) % total;
+  const nextNextIndex = (currentIndex + 2) % total;
 
+  const prevPrevControls = useAnimation();
   const prevControls = useAnimation();
   const centerControls = useAnimation();
   const nextControls = useAnimation();
+  const nextNextControls = useAnimation();
 
   const handleNext = async () => {
     if (isAnimating) return;
@@ -53,10 +73,17 @@ export default function Carousel() {
 
     const prom = Promise.all([
       prevControls.start({
-        scale: 0.75,
         x: "100%",
+        scale: 0.75,
         opacity: 0.5,
         zIndex: 0,
+        transition: { duration: 0.5 },
+      }),
+      centerControls.start({
+        x: "-100%",
+        y: 0,
+        scale: 0.75,
+        opacity: 0.75,
         transition: { duration: 0.5 },
       }),
       nextControls.start({
@@ -66,10 +93,9 @@ export default function Carousel() {
         opacity: 1,
         transition: { duration: 0.5 },
       }),
-      centerControls.start({
+      nextNextControls.start({
         x: "-100%",
-        y: 25,
-        scale: 0.75,
+        y: 0,
         opacity: 0.75,
         transition: { duration: 0.5 },
       }),
@@ -83,6 +109,7 @@ export default function Carousel() {
       prevControls.set(slotFor(-1)),
       centerControls.set(slotFor(0)),
       nextControls.set(slotFor(1)),
+      nextNextControls.set(slotFor(2)),
     ]);
 
     setIsAnimating(false);
@@ -93,6 +120,12 @@ export default function Carousel() {
     setIsAnimating(true);
 
     const prom = Promise.all([
+      prevPrevControls.start({
+        x: "100%",
+        y: 0,
+        opacity: 0.75,
+        transition: { duration: 0.5 },
+      }),
       prevControls.start({
         x: "100%",
         y: 0,
@@ -100,18 +133,18 @@ export default function Carousel() {
         opacity: 1,
         transition: { duration: 0.5 },
       }),
-      nextControls.start({
-        scale: 0.75,
-        x: "-100%",
-        opacity: 0.5,
-        zIndex: 0,
-        transition: { duration: 0.5 },
-      }),
       centerControls.start({
         x: "100%",
-        y: 25,
+        y: 0,
         scale: 0.75,
         opacity: 0.75,
+        transition: { duration: 0.5 },
+      }),
+      nextControls.start({
+        x: "-100%",
+        scale: 0.75,
+        opacity: 0.5,
+        zIndex: 0,
         transition: { duration: 0.5 },
       }),
     ]);
@@ -121,6 +154,7 @@ export default function Carousel() {
     setCurrentIndex((i) => (i - 1 + total) % total);
 
     await Promise.all([
+      prevPrevControls.set(slotFor(-2)),
       prevControls.set(slotFor(-1)),
       centerControls.set(slotFor(0)),
       nextControls.set(slotFor(1)),
@@ -136,15 +170,23 @@ export default function Carousel() {
 
   const visible = useMemo(() => {
     return {
+      prevPrev: cards[prevPrevIndex],
       prev: cards[prevIndex],
       center: cards[currentIndex],
       next: cards[nextIndex],
+      nextNext: cards[nextNextIndex],
     };
-  }, [currentIndex, prevIndex, nextIndex]);
+  }, [currentIndex, prevPrevIndex, prevIndex, nextIndex, nextNextIndex]);
 
   return (
-    <div>
+    <div className='w-screen'>
       <div className='flex items-center justify-center'>
+        <motion.div
+          className='cursor-pointer rounded-3xl'
+          initial={slotFor(-2)}
+          animate={prevPrevControls}>
+          <Card {...visible.prevPrev} />
+        </motion.div>
         <motion.div
           onClick={handlePrev}
           className='cursor-pointer rounded-3xl'
@@ -166,6 +208,12 @@ export default function Carousel() {
           initial={slotFor(1)}
           animate={nextControls}>
           <Card {...visible.next} />
+        </motion.div>
+        <motion.div
+          className='cursor-pointer rounded-3xl'
+          initial={slotFor(2)}
+          animate={nextNextControls}>
+          <Card {...visible.nextNext} />
         </motion.div>
       </div>
       <div className='flex flex-col justify-center items-center mt-4'>
