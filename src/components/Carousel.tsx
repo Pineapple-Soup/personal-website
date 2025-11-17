@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useMemo, useState } from "react";
-import { motion, useAnimation } from "motion/react";
+import { motion, useAnimation, useReducedMotion } from "motion/react";
 import Card, { CardProps } from "@/components/Card";
 import project_data from "@/data/projects.json";
 
@@ -54,6 +54,16 @@ export default function Carousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
+  const prefersReducedMotion = useReducedMotion();
+
+  const defaultTransition = useMemo(
+    () =>
+      prefersReducedMotion
+        ? { duration: 0.1 }
+        : { duration: 0.6, easing: [0.22, 1, 0.36, 1] },
+    [prefersReducedMotion]
+  );
+
   const total = cards.length;
 
   const prevPrevIndex = (currentIndex - 2 + total) % total;
@@ -77,27 +87,27 @@ export default function Carousel() {
         scale: 0.75,
         opacity: 0.5,
         zIndex: 0,
-        transition: { duration: 0.5 },
+        transition: defaultTransition,
       }),
       centerControls.start({
         x: "-100%",
         y: 0,
         scale: 0.75,
         opacity: 0.75,
-        transition: { duration: 0.5 },
+        transition: defaultTransition,
       }),
       nextControls.start({
         x: "-100%",
         y: 0,
         scale: 1,
         opacity: 1,
-        transition: { duration: 0.5 },
+        transition: defaultTransition,
       }),
       nextNextControls.start({
         x: "-100%",
         y: 0,
         opacity: 0.75,
-        transition: { duration: 0.5 },
+        transition: defaultTransition,
       }),
     ]);
 
@@ -120,6 +130,7 @@ export default function Carousel() {
     centerControls,
     nextControls,
     nextNextControls,
+    defaultTransition,
   ]);
 
   const handlePrev = useCallback(async () => {
@@ -131,28 +142,28 @@ export default function Carousel() {
         x: "100%",
         y: 0,
         opacity: 0.75,
-        transition: { duration: 0.5 },
+        transition: defaultTransition,
       }),
       prevControls.start({
         x: "100%",
         y: 0,
         scale: 1,
         opacity: 1,
-        transition: { duration: 0.5 },
+        transition: defaultTransition,
       }),
       centerControls.start({
         x: "100%",
         y: 0,
         scale: 0.75,
         opacity: 0.75,
-        transition: { duration: 0.5 },
+        transition: defaultTransition,
       }),
       nextControls.start({
         x: "-100%",
         scale: 0.75,
         opacity: 0.5,
         zIndex: 0,
-        transition: { duration: 0.5 },
+        transition: defaultTransition,
       }),
     ]);
 
@@ -175,6 +186,7 @@ export default function Carousel() {
     prevControls,
     centerControls,
     nextControls,
+    defaultTransition,
   ]);
 
   const handleDotClick = useCallback(
@@ -213,20 +225,26 @@ export default function Carousel() {
         <motion.div
           className='cursor-pointer rounded-3xl'
           initial={slotFor(-2)}
-          animate={prevPrevControls}>
+          animate={prevPrevControls}
+          // style={{ willChange: "transform, opacity" }}
+        >
           <Card {...visible.prevPrev} />
         </motion.div>
         <motion.div
           onClick={handlePrev}
           className='cursor-pointer rounded-3xl'
           initial={slotFor(-1)}
-          animate={prevControls}>
+          animate={prevControls}
+          // style={{ willChange: "transform, opacity" }}
+        >
           <Card {...visible.prev} />
         </motion.div>
         <motion.div
           className='cursor-pointer rounded-3xl'
           initial={slotFor(0)}
-          animate={centerControls}>
+          animate={centerControls}
+          // style={{ willChange: "transform, opacity" }}
+        >
           <Link href={`/projects/${project_data[currentIndex].name}`}>
             <Card {...visible.center} />
           </Link>
@@ -235,13 +253,17 @@ export default function Carousel() {
           onClick={handleNext}
           className='cursor-pointer rounded-3xl'
           initial={slotFor(1)}
-          animate={nextControls}>
+          animate={nextControls}
+          // style={{ willChange: "transform, opacity" }}
+        >
           <Card {...visible.next} />
         </motion.div>
         <motion.div
           className='cursor-pointer rounded-3xl'
           initial={slotFor(2)}
-          animate={nextNextControls}>
+          animate={nextNextControls}
+          // style={{ willChange: "transform, opacity" }}
+        >
           <Card {...visible.nextNext} />
         </motion.div>
       </div>
