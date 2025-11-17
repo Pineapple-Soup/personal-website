@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import React, { useMemo, useState } from "react";
-import { motion, useAnimation } from "framer-motion";
+import { useCallback, useMemo, useState } from "react";
+import { motion, useAnimation } from "motion/react";
 import Card, { CardProps } from "@/components/Card";
 import project_data from "@/data/projects.json";
 
@@ -67,7 +67,7 @@ export default function Carousel() {
   const nextControls = useAnimation();
   const nextNextControls = useAnimation();
 
-  const handleNext = async () => {
+  const handleNext = useCallback(async () => {
     if (isAnimating) return;
     setIsAnimating(true);
 
@@ -113,9 +113,16 @@ export default function Carousel() {
     ]);
 
     setIsAnimating(false);
-  };
+  }, [
+    isAnimating,
+    total,
+    prevControls,
+    centerControls,
+    nextControls,
+    nextNextControls,
+  ]);
 
-  const handlePrev = async () => {
+  const handlePrev = useCallback(async () => {
     if (isAnimating) return;
     setIsAnimating(true);
 
@@ -161,12 +168,22 @@ export default function Carousel() {
     ]);
 
     setIsAnimating(false);
-  };
+  }, [
+    isAnimating,
+    total,
+    prevPrevControls,
+    prevControls,
+    centerControls,
+    nextControls,
+  ]);
 
-  const handleDotClick = (index: number) => {
-    if (index === currentIndex || isAnimating) return;
-    setCurrentIndex(index);
-  };
+  const handleDotClick = useCallback(
+    (index: number) => {
+      if (index === currentIndex || isAnimating) return;
+      setCurrentIndex(index);
+    },
+    [currentIndex, isAnimating]
+  );
 
   const visible = useMemo(() => {
     return {
