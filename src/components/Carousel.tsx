@@ -178,11 +178,23 @@ export default function Carousel() {
   ]);
 
   const handleDotClick = useCallback(
-    (index: number) => {
+    async (index: number) => {
       if (index === currentIndex || isAnimating) return;
-      setCurrentIndex(index);
+
+      const forwardSteps = (index - currentIndex + total) % total;
+      const backwardSteps = (currentIndex - index + total) % total;
+      const forward = forwardSteps <= backwardSteps;
+      const steps = forward ? forwardSteps : backwardSteps;
+
+      for (let i = 0; i < steps; i++) {
+        if (forward) {
+          await handleNext();
+        } else {
+          await handlePrev();
+        }
+      }
     },
-    [currentIndex, isAnimating]
+    [currentIndex, isAnimating, total, handleNext, handlePrev]
   );
 
   const visible = useMemo(() => {
