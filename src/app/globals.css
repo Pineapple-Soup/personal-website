@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
   --color-background: var(--background);
@@ -66,7 +66,9 @@
     color: var(--foreground);
     background: var(--background);
     font-family: "IBM Plex Mono", monospace;
-    transition: background-color 0.3s, color 0.3s;
+    transition:
+      background-color 0.3s,
+      color 0.3s;
   }
 
   h1 {
@@ -99,18 +101,6 @@
   .homeButton {
     @apply size-20 p-4 cursor-pointer bg-secondary ease-in-out duration-100 hover:bg-accent hover:-translate-y-1/4;
   }
-
-  .card {
-    @apply hover:cursor-pointer hover:-translate-y-10 h-full w-full flex flex-col overflow-hidden rounded-3xl bg-primary shadow-lg transition-transform duration-500 ease-in-out;
-  }
-
-  .carousel {
-    @apply h-1/2 mt-12 flex justify-center;
-  }
-
-  .badge {
-    @apply rounded-3xl p-2 font-extrabold;
-  }
 }
 
 @layer utilities {
@@ -133,4 +123,8 @@
   html {
     scroll-behavior: smooth;
   }
+}
+
+@utility no-scrollbar {
+  @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
 }

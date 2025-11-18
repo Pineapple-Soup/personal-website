@@ -1,53 +1,51 @@
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 
 export interface CardProps {
   title: string;
   description: string;
   status: string;
-  image: StaticImageData;
+  image: string;
   stack: string[];
 }
 
-export default function Card({
-  title,
-  description,
-  status,
-  image,
-  stack,
-}: CardProps) {
+const Card = ({ title, description, status, image, stack }: CardProps) => {
   return (
-    <div className='card'>
-      <div className='relative h-1/2 m-4'>
-        <Image
-          src={image}
-          alt={title}
-          fill={true}
-          className='object-cover rounded-3xl'
-        />
+    <div className='flex flex-col h-full w-96 bg-primary shadow-lg overflow-hidden rounded-3xl duration-300 hover:ring-4 hover:ring-accent hover:shadow-xl'>
+      <div className='relative m-4 h-48'>
+        <Image src={image} alt={title} fill className='object-contain' />
       </div>
-      <div className='flex justify-between items-center mx-6'>
-        <h3 className='text-lg'>{title}</h3>
-        <small
-          className={
-            status === "In Progress"
-              ? "badge bg-orange-500"
-              : status === "Completed"
-              ? "badge bg-green-500"
-              : "badge bg-red-500"
-          }>
+
+      <header className='flex justify-between items-center mx-4'>
+        <h3 className='text-xl'>{title}</h3>
+        <p
+          className={`rounded-3xl p-2 text-sm font-semibold
+            ${
+              status === "In Progress"
+                ? "bg-orange-500"
+                : status === "Completed"
+                  ? "bg-green-500"
+                  : "bg-red-500"
+            }
+          `}>
           {status}
-        </small>
-      </div>
-      <small className='mx-6 py-2 flex-1'>{description}</small>
-      <ul className='flex flex-wrap m-4'>
-        {stack.map((tech, index) => (
-          <li key={index}>
-            <small className='bg-secondary rounded-3xl p-2 m-2 hover:ring-accent hover:ring-2'>
-              {tech}
-            </small>
-          </li>
-        ))}
-      </ul>
+        </p>
+      </header>
+
+      <p className='mx-4 py-4 text-sm'>{description}</p>
+
+      <footer>
+        <ul className='flex flex-wrap m-4 gap-2'>
+          {stack.map((tech, index) => (
+            <li key={index}>
+              <p className='bg-secondary rounded-3xl p-2 text-xs hover:ring-accent hover:ring-2'>
+                {tech}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </footer>
     </div>
   );
-}
+};
+
+export default Card;
