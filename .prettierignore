@@ -1,0 +1,14 @@
+node_modules
+.next
+public/assets
+dist
+coverage
+build
+.vscode
+.env
+.env.local
+
+# Ignore lockfiles (we still format package.json)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml

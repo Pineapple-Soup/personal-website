@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { useCallback, useMemo, useState } from "react";
-import { motion, useAnimation, useReducedMotion } from "motion/react";
-import Card, { CardProps } from "@/components/Card";
-import project_data from "@/data/projects.json";
+import Link from 'next/link';
+import { useCallback, useMemo, useState } from 'react';
+import { motion, useAnimation, useReducedMotion } from 'motion/react';
+import Card, { CardProps } from '@/components/Card';
+import project_data from '@/data/projects.json';
 
 const cards: CardProps[] = project_data.map((project) => ({
   title: project.title,
@@ -17,7 +17,7 @@ const cards: CardProps[] = project_data.map((project) => ({
 const slotFor = (i: number, distX = 0, distY = 0) => {
   if (i === -2)
     return {
-      x: "200%",
+      x: '200%',
       y: distY,
       scale: 0.75,
       opacity: 0,
@@ -41,7 +41,7 @@ const slotFor = (i: number, distX = 0, distY = 0) => {
     };
   if (i === 2)
     return {
-      x: "-200%",
+      x: '-200%',
       y: distY,
       scale: 0.75,
       opacity: 0,
@@ -58,10 +58,8 @@ export default function Carousel() {
 
   const defaultTransition = useMemo(
     () =>
-      prefersReducedMotion
-        ? { duration: 0.1 }
-        : { duration: 0.6, easing: [0.22, 1, 0.36, 1] },
-    [prefersReducedMotion]
+      prefersReducedMotion ? { duration: 0.1 } : { duration: 0.6, easing: [0.22, 1, 0.36, 1] },
+    [prefersReducedMotion],
   );
 
   const total = cards.length;
@@ -83,28 +81,28 @@ export default function Carousel() {
 
     const prom = Promise.all([
       prevControls.start({
-        x: "100%",
+        x: '100%',
         scale: 0.75,
         opacity: 0.5,
         zIndex: 0,
         transition: defaultTransition,
       }),
       centerControls.start({
-        x: "-100%",
+        x: '-100%',
         y: 0,
         scale: 0.75,
         opacity: 0.75,
         transition: defaultTransition,
       }),
       nextControls.start({
-        x: "-100%",
+        x: '-100%',
         y: 0,
         scale: 1,
         opacity: 1,
         transition: defaultTransition,
       }),
       nextNextControls.start({
-        x: "-100%",
+        x: '-100%',
         y: 0,
         opacity: 0.75,
         transition: defaultTransition,
@@ -139,27 +137,27 @@ export default function Carousel() {
 
     const prom = Promise.all([
       prevPrevControls.start({
-        x: "100%",
+        x: '100%',
         y: 0,
         opacity: 0.75,
         transition: defaultTransition,
       }),
       prevControls.start({
-        x: "100%",
+        x: '100%',
         y: 0,
         scale: 1,
         opacity: 1,
         transition: defaultTransition,
       }),
       centerControls.start({
-        x: "100%",
+        x: '100%',
         y: 0,
         scale: 0.75,
         opacity: 0.75,
         transition: defaultTransition,
       }),
       nextControls.start({
-        x: "-100%",
+        x: '-100%',
         scale: 0.75,
         opacity: 0.5,
         zIndex: 0,
@@ -206,7 +204,7 @@ export default function Carousel() {
         }
       }
     },
-    [currentIndex, isAnimating, total, handleNext, handlePrev]
+    [currentIndex, isAnimating, total, handleNext, handlePrev],
   );
 
   const visible = useMemo(() => {
@@ -220,10 +218,10 @@ export default function Carousel() {
   }, [currentIndex, prevPrevIndex, prevIndex, nextIndex, nextNextIndex]);
 
   return (
-    <div className='w-screen'>
-      <div className='flex items-center justify-center'>
+    <div className="w-screen">
+      <div className="flex items-center justify-center">
         <motion.div
-          className='cursor-pointer rounded-3xl'
+          className="cursor-pointer rounded-3xl"
           initial={slotFor(-2)}
           animate={prevPrevControls}
           // style={{ willChange: "transform, opacity" }}
@@ -232,7 +230,7 @@ export default function Carousel() {
         </motion.div>
         <motion.div
           onClick={handlePrev}
-          className='cursor-pointer rounded-3xl'
+          className="cursor-pointer rounded-3xl"
           initial={slotFor(-1)}
           animate={prevControls}
           // style={{ willChange: "transform, opacity" }}
@@ -240,7 +238,7 @@ export default function Carousel() {
           <Card {...visible.prev} />
         </motion.div>
         <motion.div
-          className='cursor-pointer rounded-3xl'
+          className="cursor-pointer rounded-3xl"
           initial={slotFor(0)}
           animate={centerControls}
           // style={{ willChange: "transform, opacity" }}
@@ -251,7 +249,7 @@ export default function Carousel() {
         </motion.div>
         <motion.div
           onClick={handleNext}
-          className='cursor-pointer rounded-3xl'
+          className="cursor-pointer rounded-3xl"
           initial={slotFor(1)}
           animate={nextControls}
           // style={{ willChange: "transform, opacity" }}
@@ -259,7 +257,7 @@ export default function Carousel() {
           <Card {...visible.next} />
         </motion.div>
         <motion.div
-          className='cursor-pointer rounded-3xl'
+          className="cursor-pointer rounded-3xl"
           initial={slotFor(2)}
           animate={nextNextControls}
           // style={{ willChange: "transform, opacity" }}
@@ -267,20 +265,21 @@ export default function Carousel() {
           <Card {...visible.nextNext} />
         </motion.div>
       </div>
-      <div className='flex flex-col justify-center items-center mt-4'>
+      <div className="flex flex-col justify-center items-center mt-4">
         {/* Numbers */}
-        <div className='mb-2'>
+        <div className="mb-2">
           {currentIndex + 1}/{cards.length}
         </div>
         {/* Dots */}
-        <ul className='flex justify-center'>
+        <ul className="flex justify-center">
           {cards.map((_, index) => (
             <li
               key={index}
               onClick={() => handleDotClick(index)}
               className={`w-2 h-2 m-2 rounded-full bg-secondary cursor-pointer ${
-                index === currentIndex ? "!bg-accent scale-110" : ""
-              }`}></li>
+                index === currentIndex ? '!bg-accent scale-110' : ''
+              }`}
+            ></li>
           ))}
         </ul>
       </div>

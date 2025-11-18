@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useEffect, useRef } from "react";
-import { OrbitControls } from "three/examples/jsm/Addons.js";
-import * as THREE from "three";
+import { useEffect, useRef } from 'react';
+import { OrbitControls } from 'three/examples/jsm/Addons.js';
+import * as THREE from 'three';
 
 function InitializeScene(container: HTMLDivElement) {
   const dimensions = {
@@ -10,12 +10,7 @@ function InitializeScene(container: HTMLDivElement) {
     height: container.clientHeight,
   };
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(
-    75,
-    dimensions.width / dimensions.height,
-    0.1,
-    1000
-  );
+  const camera = new THREE.PerspectiveCamera(75, dimensions.width / dimensions.height, 0.1, 1000);
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(dimensions.width, dimensions.height);
   renderer.setClearColor(0x000000, 0);
@@ -31,14 +26,9 @@ function createPineappleBody(
   radSegments: number,
   color: number,
   outline: boolean,
-  outlineColor?: number
+  outlineColor?: number,
 ) {
-  const baseGeometry = new THREE.CapsuleGeometry(
-    radius,
-    length,
-    capSegments,
-    radSegments
-  );
+  const baseGeometry = new THREE.CapsuleGeometry(radius, length, capSegments, radSegments);
   const baseMaterial = new THREE.MeshToonMaterial({ color: color });
   const base = new THREE.Mesh(baseGeometry, baseMaterial);
   if (outline) {
@@ -59,7 +49,7 @@ function createLeaf(
   radialSegments: number,
   color: number,
   outline: boolean,
-  outlineColor?: number
+  outlineColor?: number,
 ) {
   const leafGeometry = new THREE.ConeGeometry(radius, height, radialSegments);
   const leafMaterial = new THREE.MeshToonMaterial({ color: color });
@@ -83,47 +73,25 @@ function createCrown(
   leafCount: number,
   color: number,
   outline: boolean,
-  outlineColor?: number
+  outlineColor?: number,
 ) {
   const crown = new THREE.Group();
 
   for (let i = 0; i < leafCount; i++) {
-    const leaf = createLeaf(
-      height - radius,
-      height - 4,
-      6,
-      color,
-      outline,
-      outlineColor
-    );
+    const leaf = createLeaf(height - radius, height - 4, 6, color, outline, outlineColor);
 
     const angle = (i / leafCount) * Math.PI * 2;
-    leaf.position.set(
-      (Math.cos(angle) * radius) / 2,
-      2,
-      (Math.sin(angle) * radius) / 2
-    );
+    leaf.position.set((Math.cos(angle) * radius) / 2, 2, (Math.sin(angle) * radius) / 2);
     leaf.lookAt(0, 12, 0);
 
     crown.add(leaf);
   }
 
   for (let i = 0; i < leafCount; i++) {
-    const leaf = createLeaf(
-      height - radius,
-      height,
-      6,
-      color,
-      outline,
-      outlineColor
-    );
+    const leaf = createLeaf(height - radius, height, 6, color, outline, outlineColor);
 
     const angle = ((i + 0.5) / leafCount) * Math.PI * 2;
-    leaf.position.set(
-      (Math.cos(angle) * radius) / 4,
-      4,
-      (Math.sin(angle) * radius) / 4
-    );
+    leaf.position.set((Math.cos(angle) * radius) / 4, 4, (Math.sin(angle) * radius) / 4);
     leaf.lookAt(0, 6, 0);
 
     crown.add(leaf);
@@ -152,15 +120,7 @@ export default function Pineapple() {
 
     const height = 10;
     const radius = 8;
-    const pineapple = createPineappleBody(
-      radius,
-      height - radius,
-      2,
-      18,
-      0xe09d29,
-      true,
-      0x000000
-    );
+    const pineapple = createPineappleBody(radius, height - radius, 2, 18, 0xe09d29, true, 0x000000);
     const crown = createCrown(height, radius, 8, 0x006400, true, 0x000000);
     crown.position.set(0, radius, 0);
     pineapple.position.set(0, -5, 0);
@@ -170,21 +130,21 @@ export default function Pineapple() {
 
     camera.position.z = 25;
 
-    container.addEventListener("mouseenter", () => {
-      container.style.cursor = "grab";
+    container.addEventListener('mouseenter', () => {
+      container.style.cursor = 'grab';
     });
 
-    container.addEventListener("mousedown", () => {
+    container.addEventListener('mousedown', () => {
       controls.autoRotate = false;
-      container.style.cursor = "grabbing";
+      container.style.cursor = 'grabbing';
     });
 
-    container.addEventListener("mouseup", () => {
+    container.addEventListener('mouseup', () => {
       controls.autoRotate = true;
-      container.style.cursor = "grab";
+      container.style.cursor = 'grab';
     });
 
-    window.addEventListener("resize", () => {
+    window.addEventListener('resize', () => {
       const dimensions = {
         width: container.clientWidth,
         height: container.clientHeight,
@@ -209,5 +169,5 @@ export default function Pineapple() {
     };
   }, []);
 
-  return <div ref={containerRef} className='w-full h-full' />;
+  return <div ref={containerRef} className="w-full h-full" />;
 }
