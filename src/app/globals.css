@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   --color-background: var(--background);
@@ -65,7 +65,7 @@
   body {
     color: var(--foreground);
     background: var(--background);
-    font-family: "IBM Plex Mono", monospace;
+    font-family: 'IBM Plex Mono', monospace;
     transition:
       background-color 0.3s,
       color 0.3s;
