@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from 'next-themes';
+import Navbar from '@/components/Navbar';
 import '@/app/globals.css';
 
 export const metadata: Metadata = {
@@ -52,12 +53,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className="no-scrollbar">
-      <body>
+      <body className="lg:w-3/4 lg:mx-auto">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem={true}>
+          <Navbar />
           {children}
+          <Analytics />
+          <SpeedInsights />
         </ThemeProvider>
-        <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   );
