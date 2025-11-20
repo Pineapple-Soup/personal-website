@@ -1,12 +1,17 @@
 'use client';
 
 import { useTheme } from 'next-themes';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BsFillMoonStarsFill, BsSunFill } from 'react-icons/bs';
 
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
-  const [mounted] = useState(() => typeof window !== 'undefined');
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const id = setTimeout(() => setMounted(true), 0);
+    return () => clearTimeout(id);
+  }, []);
 
   if (!mounted) return <BsSunFill className="cursor-pointer my-auto size-10 icon-transition" />;
 
