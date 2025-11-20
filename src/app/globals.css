@@ -55,13 +55,6 @@
 }
 
 @layer base {
-  main {
-    @apply w-3/4 mx-auto;
-  }
-  header {
-    font-size: 24px;
-    font-weight: semi-bold;
-  }
   body {
     color: var(--foreground);
     background: var(--background);
@@ -93,11 +86,6 @@
   p {
     font-size: 20px;
   }
-
-  .navbar {
-    @apply fixed w-3/4 pt-6 pb-2 flex justify-between backdrop-blur-xs z-50;
-  }
-
   .homeButton {
     @apply size-20 p-4 cursor-pointer bg-secondary ease-in-out duration-100 hover:bg-accent hover:-translate-y-1/4;
   }
