@@ -30,7 +30,7 @@ export default function Navbar() {
       <div className="top-0">
         <ThemeToggle />
       </div>
-      <ul className="hidden md:show md:flex justify-between items-center group w-3/4">
+      <ul className="hidden md:show md:flex justify-between items-center group w-3/4 lg:w-1/2">
         {navItems.map((item, index) => (
           <li
             className="cursor-pointer transform hover:opacity-100! group-has-[:hover]:opacity-50 hover:scale-110 duration-200"
