@@ -26,7 +26,7 @@ export default function Navbar() {
   const navItems = ['Home', 'About', 'Projects', 'Contact'];
 
   return (
-    <div className="sticky top-0 flex justify-between py-4 px-8 text-2xl z-50 backdrop-blur-xs">
+    <div className="sticky top-0 w-full flex justify-between py-4 px-8 text-2xl z-50 backdrop-blur-md bg-background/75">
       <div className="top-0">
         <ThemeToggle />
       </div>

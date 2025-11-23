@@ -36,7 +36,11 @@
     opacity 0.3s ease-in-out;
 }
 
-@layer utilities {
+@utility no-scrollbar {
+  @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
+}
+
+@layer base {
   :root {
     --background: #ffc96b;
     --foreground: #171108;
@@ -52,9 +56,11 @@
     --secondary: #e09d29;
     --accent: #ffc96b;
   }
-}
 
-@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     color: var(--foreground);
     background: var(--background);
@@ -65,29 +71,29 @@
   }
 
   h1 {
-    font-size: 80px;
-    font-weight: bold;
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold;
   }
 
   h2 {
-    font-size: 40px;
-    font-weight: bold;
+    @apply text-3xl md:text-4xl font-bold;
   }
 
   h3 {
-    font-size: 20px;
-    font-weight: bold;
+    @apply text-lg md:text-xl font-bold;
   }
 
   sub {
-    font-size: 32px;
+    @apply text-xl md:text-2xl;
   }
 
   p {
-    font-size: 20px;
+    @apply text-base md:text-xl;
   }
+}
+
+@layer components {
   .homeButton {
-    @apply size-20 p-4 cursor-pointer bg-secondary ease-in-out duration-100 hover:bg-accent hover:-translate-y-1/4;
+    @apply size-12 md:size-20 p-2 md:p-4 cursor-pointer bg-secondary ease-in-out duration-100 hover:bg-accent hover:-translate-y-1/4;
   }
 }
 
@@ -105,14 +111,4 @@
       transform: rotate(-10deg); /* Tilt back to left */
     }
   }
-}
-
-@layer utilities {
-  html {
-    scroll-behavior: smooth;
-  }
-}
-
-@utility no-scrollbar {
-  @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
 }

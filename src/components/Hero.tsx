@@ -9,18 +9,20 @@ export default function Hero() {
   const github_url = process.env.GITHUB_URL;
 
   return (
-    <section id="home" className="w-full h-screen grid grid-cols-2">
-      <div className="flex flex-col grow justify-center">
-        <h1>
+    <div id="home" className="w-full min-h-[calc(100vh-80px)] grid grid-cols-1 md:grid-cols-2">
+      <div className="flex flex-col justify-center gap-4 px-4 py-8 items-center md:items-start md:pl-12">
+        <h1 className="text-center md:text-left">
           Hello!
-          <span className="text-8xl inline-block hover:animate-wave cursor-pointer ml-12">👋</span>
+          <span className="text-4xl md:text-7xl lg:text-8xl inline-block hover:animate-wave cursor-pointer ml-4 md:ml-8">
+            👋
+          </span>
           <br />
           I&apos;m Adithya
         </h1>
-        <sub className="leading-normal">
+        <sub className="leading-normal text-center md:text-left">
           I love building things, solving puzzles, and learning new skills
         </sub>
-        <div className="flex mx-auto my-12 rounded-full drop-shadow-xl">
+        <div className="flex mx-auto md:mx-0 my-8 md:my-12 rounded-full drop-shadow-xl">
           <a href={`mailto:${email}`} target="_blank" rel="noreferrer noopener">
             <MdEmail className="homeButton rounded-l-full" />
           </a>
@@ -35,9 +37,9 @@ export default function Hero() {
           </a>
         </div>
       </div>
-      <div>
+      <div className="w-full h-[40vh] md:h-full flex items-center justify-center">
         <Pineapple />
       </div>
-    </section>
+    </div>
   );
 }

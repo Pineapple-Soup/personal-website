@@ -144,7 +144,7 @@ export default function Pineapple() {
       container.style.cursor = 'grab';
     });
 
-    window.addEventListener('resize', () => {
+    const handleResize = () => {
       const dimensions = {
         width: container.clientWidth,
         height: container.clientHeight,
@@ -153,7 +153,9 @@ export default function Pineapple() {
       renderer.setSize(dimensions.width, dimensions.height);
       camera.aspect = dimensions.width / dimensions.height;
       camera.updateProjectionMatrix();
-    });
+    };
+
+    window.addEventListener('resize', handleResize);
 
     function animate() {
       requestAnimationFrame(animate);
@@ -163,6 +165,7 @@ export default function Pineapple() {
     animate();
 
     return () => {
+      window.removeEventListener('resize', handleResize);
       if (container) {
         container.removeChild(renderer.domElement);
       }
