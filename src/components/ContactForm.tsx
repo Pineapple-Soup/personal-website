@@ -56,8 +56,8 @@ export default function ContactForm() {
   };
 
   return (
-    <form className=" flex flex-col p-4" onSubmit={handleSubmit}>
-      <div className="flex space-x-4">
+    <form className="flex flex-col p-4" onSubmit={handleSubmit}>
+      <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 mb-2">
         <input
           name="firstName"
           value={form.firstName}
@@ -65,7 +65,7 @@ export default function ContactForm() {
           type="text"
           placeholder="First Name"
           required={true}
-          className="bg-secondary focus:outline-hidden focus:ring-accent focus:ring-4 placeholder-slate-600 rounded-lg p-2 my-2 w-1/2"
+          className="bg-secondary focus:outline-hidden focus:ring-accent focus:ring-4 placeholder-slate-600 rounded-lg p-2 w-full md:w-1/2"
         />
         <input
           name="lastName"
@@ -74,7 +74,7 @@ export default function ContactForm() {
           type="text"
           placeholder="Last Name"
           required={true}
-          className="bg-secondary focus:outline-hidden focus:ring-accent focus:ring-4 placeholder-slate-600 rounded-lg p-2 my-2 w-1/2"
+          className="bg-secondary focus:outline-hidden focus:ring-accent focus:ring-4 placeholder-slate-600 rounded-lg p-2 w-full md:w-1/2"
         />
       </div>
       <input
@@ -84,7 +84,7 @@ export default function ContactForm() {
         type="email"
         placeholder="Email"
         required={true}
-        className="bg-secondary focus:outline-hidden focus:ring-accent focus:ring-4 placeholder-slate-600 rounded-lg p-2 my-2"
+        className="bg-secondary focus:outline-hidden focus:ring-accent focus:ring-4 placeholder-slate-600 rounded-lg p-2 my-2 w-full"
       />
       <input
         name="subject"
@@ -93,7 +93,7 @@ export default function ContactForm() {
         type="text"
         placeholder="Subject"
         required={true}
-        className="bg-secondary focus:outline-hidden focus:ring-accent focus:ring-4 placeholder-slate-600 rounded-lg p-2 my-2"
+        className="bg-secondary focus:outline-hidden focus:ring-accent focus:ring-4 placeholder-slate-600 rounded-lg p-2 my-2 w-full"
       />
       <textarea
         name="message"
@@ -101,7 +101,7 @@ export default function ContactForm() {
         onChange={handleChange}
         placeholder="Message"
         required={true}
-        className="bg-secondary focus:outline-hidden focus:ring-accent focus:ring-4 placeholder-slate-600 resize-none rounded-lg p-2 my-2"
+        className="bg-secondary focus:outline-hidden focus:ring-accent focus:ring-4 placeholder-slate-600 resize-none rounded-lg p-2 my-2 w-full"
         rows={5}
       />
       <motion.button
