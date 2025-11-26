@@ -10,7 +10,7 @@ export interface CardProps {
 
 const Card = ({ title, description, status, image, stack }: CardProps) => {
   return (
-    <div className="flex flex-col h-full w-96 bg-primary shadow-lg overflow-hidden rounded-3xl duration-300 hover:ring-4 hover:ring-accent hover:shadow-xl">
+    <div className="flex flex-col h-full w-[85vw] max-w-96 bg-primary shadow-lg overflow-hidden rounded-3xl duration-300 hover:ring-4 hover:ring-accent hover:shadow-xl">
       <div className="relative m-4 h-48">
         <Image src={image} alt={title} fill className="object-contain" />
       </div>

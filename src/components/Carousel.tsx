@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useCallback, useMemo, useState } from 'react';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { motion, useAnimation, useReducedMotion } from 'motion/react';
 import Card, { CardProps } from '@/components/Card';
 import project_data from '@/data/projects.json';
@@ -218,13 +219,12 @@ export default function Carousel() {
   }, [currentIndex, prevPrevIndex, prevIndex, nextIndex, nextNextIndex]);
 
   return (
-    <div className="w-screen">
+    <div className="w-full overflow-x-hidden md:overflow-x-visible py-8">
       <div className="flex items-center justify-center">
         <motion.div
-          className="cursor-pointer rounded-3xl"
+          className="hidden md:block cursor-pointer rounded-3xl px-2"
           initial={slotFor(-2)}
           animate={prevPrevControls}
-          // style={{ willChange: "transform, opacity" }}
         >
           <Card {...visible.prevPrev} />
         </motion.div>
@@ -233,7 +233,6 @@ export default function Carousel() {
           className="cursor-pointer rounded-3xl"
           initial={slotFor(-1)}
           animate={prevControls}
-          // style={{ willChange: "transform, opacity" }}
         >
           <Card {...visible.prev} />
         </motion.div>
@@ -241,7 +240,6 @@ export default function Carousel() {
           className="cursor-pointer rounded-3xl"
           initial={slotFor(0)}
           animate={centerControls}
-          // style={{ willChange: "transform, opacity" }}
         >
           <Link href={`/projects/${project_data[currentIndex].name}`}>
             <Card {...visible.center} />
@@ -252,20 +250,36 @@ export default function Carousel() {
           className="cursor-pointer rounded-3xl"
           initial={slotFor(1)}
           animate={nextControls}
-          // style={{ willChange: "transform, opacity" }}
         >
           <Card {...visible.next} />
         </motion.div>
         <motion.div
-          className="cursor-pointer rounded-3xl"
+          className="hidden md:block cursor-pointer rounded-3xl"
           initial={slotFor(2)}
           animate={nextNextControls}
-          // style={{ willChange: "transform, opacity" }}
         >
           <Card {...visible.nextNext} />
         </motion.div>
       </div>
       <div className="flex flex-col justify-center items-center mt-4">
+        {/* Mobile Navigation Controls */}
+        <div className="flex md:hidden gap-8 mb-4">
+          <button
+            onClick={handlePrev}
+            className="p-3 bg-secondary rounded-full shadow-lg active:scale-95 transition-transform hover:bg-accent"
+            aria-label="Previous Project"
+          >
+            <FaChevronLeft />
+          </button>
+          <button
+            onClick={handleNext}
+            className="p-3 bg-secondary rounded-full shadow-lg active:scale-95 transition-transform hover:bg-accent"
+            aria-label="Next Project"
+          >
+            <FaChevronRight />
+          </button>
+        </div>
+
         {/* Numbers */}
         <div className="mb-2">
           {currentIndex + 1}/{cards.length}
