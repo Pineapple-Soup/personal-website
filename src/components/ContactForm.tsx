@@ -57,7 +57,7 @@ export default function ContactForm() {
 
   return (
     <form className="flex flex-col p-4" onSubmit={handleSubmit}>
-      <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 mb-2">
+      <div className="flex flex-col md:flex-row md:space-x-4 gap-4 md:space-y-0 mb-2">
         <input
           name="firstName"
           value={form.firstName}
