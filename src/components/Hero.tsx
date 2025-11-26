@@ -37,7 +37,7 @@ export default function Hero() {
           </a>
         </div>
       </div>
-      <div className="w-full h-[40vh] md:h-full flex items-center justify-center">
+      <div className="min-w-48 md:w-full h-[40vh] md:h-full flex items-center justify-center place-self-center">
         <Pineapple />
       </div>
     </div>
