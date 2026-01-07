@@ -7,7 +7,7 @@
     "motivation": "",
     "status": "Completed",
     "stack": ["React", "Typescript", "Firebase"],
-    "github": "http://github.com/tingtingtingtingtingtingtingtingtingtin/generositree"
+    "github": "https://github.com/tingtingtingtingtingtingtingtingtingtin/generositree"
   },
   {
     "name": "interplanetary",
@@ -17,7 +17,7 @@
     "motivation": "",
     "status": "Completed",
     "stack": ["React", "Three.js", "Python", "Flask"],
-    "github": "http://github.com/pineapple-soup/interplanetary"
+    "github": "https://github.com/pineapple-soup/interplanetary"
   },
   {
     "name": "scicaml",
@@ -27,17 +27,17 @@
     "motivation": "",
     "status": "In Progress",
     "stack": ["OCaml", "Dune"],
-    "github": "http://github.com/pineapple-soup/scicaml"
+    "github": "https://github.com/pineapple-soup/scicaml"
   },
   {
     "name": "sudoku",
     "title": "Sudoku Solver",
-    "description": "Interative Sudoku Solver with CLI and GUI options",
+    "description": "Interactive Sudoku Solver with CLI and GUI options",
     "overview": "",
     "motivation": "",
     "status": "Completed",
     "stack": ["Python", "Tkinter"],
-    "github": "http://github.com/pineapple-soup/sudoku-solver"
+    "github": "https://github.com/pineapple-soup/sudoku-solver"
   },
   {
     "name": "website",
@@ -47,7 +47,7 @@
     "motivation": "",
     "status": "In Progress",
     "stack": ["React", "Next.js", "TailwindCSS"],
-    "github": "http://github.com/pineapple-soup/website"
+    "github": "https://github.com/pineapple-soup/website"
   },
   {
     "name": "autochemlab",
@@ -57,6 +57,6 @@
     "motivation": "",
     "status": "Completed",
     "stack": ["Python"],
-    "github": "http://github.com/pineapple-soup/autochemlab"
+    "github": "https://github.com/pineapple-soup/autochemlab"
   }
 ]
